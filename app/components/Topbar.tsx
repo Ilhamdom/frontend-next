@@ -1,14 +1,76 @@
 "use client";
 import React, { useState, useRef, useEffect } from "react";
 import Link from "next/link";
-import { IconChevronDown, IconLogout } from "@tabler/icons-react";
+import { IconChevronDown, IconLogout, IconCalendar, IconCalendarStats } from "@tabler/icons-react";
 
 interface TopbarProps {
   onToggleSidebar: () => void;
 }
 
+const TAHUN_OPTIONS = ["2024", "2025", "2026", "2027"];
+const TRIWULAN_OPTIONS = ["Triwulan I", "Triwulan II", "Triwulan III", "Triwulan IV"];
+
+function FilterDropdown({
+  icon,
+  value,
+  options,
+  onChange,
+}: {
+  icon: React.ReactNode;
+  value: string;
+  options: string[];
+  onChange: (v: string) => void;
+}) {
+  const [open, setOpen] = useState(false);
+  const ref = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    function handleClickOutside(e: MouseEvent) {
+      if (ref.current && !ref.current.contains(e.target as Node)) setOpen(false);
+    }
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
+
+  return (
+    <div className="relative" ref={ref}>
+      <button
+        type="button"
+        onClick={() => setOpen(v => !v)}
+        className="flex items-center gap-2 bg-blue-800 hover:bg-blue-700 border border-blue-600 text-white text-sm font-semibold rounded-lg px-3 py-1.5 transition-colors focus:outline-none focus:ring-2 focus:ring-blue-400 min-w-[120px] justify-between"
+      >
+        <span className="flex items-center gap-1.5">
+          {icon}
+          {value}
+        </span>
+        <IconChevronDown size={14} stroke={2.5} className={`transition-transform duration-200 ${open ? "rotate-180" : ""}`} />
+      </button>
+      {open && (
+        <div className="absolute left-0 mt-2 w-full min-w-[130px] bg-white rounded-xl shadow-lg border border-gray-100 py-1 z-50">
+          {options.map(opt => (
+            <button
+              key={opt}
+              type="button"
+              onClick={() => { onChange(opt); setOpen(false); }}
+              className={`w-full text-left px-4 py-2 text-sm transition-colors rounded-lg ${
+                opt === value
+                  ? "bg-blue-50 text-blue-900 font-bold"
+                  : "text-gray-700 hover:bg-gray-50"
+              }`}
+            >
+              {opt}
+            </button>
+          ))}
+        </div>
+      )}
+    </div>
+  );
+}
+
 const Topbar: React.FC<TopbarProps> = ({ onToggleSidebar }) => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [selectedTahun, setSelectedTahun] = useState("2026");
+  const [selectedTriwulan, setSelectedTriwulan] = useState("Triwulan I");
   const dropdownRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -23,7 +85,7 @@ const Topbar: React.FC<TopbarProps> = ({ onToggleSidebar }) => {
 
   return (
     <header className="h-18 bg-blue-900 border-b border-blue-800 flex items-center px-8 justify-between shadow-sm">
-      {/* Left: Hamburger */}
+      {/* Left: Hamburger + Filters */}
       <div className="flex items-center gap-4 flex-1">
         <button
           className="mr-2 p-2 rounded-md hover:bg-blue-800 focus:outline-none focus:ring-2 focus:ring-blue-400 transition-colors"
@@ -36,6 +98,22 @@ const Topbar: React.FC<TopbarProps> = ({ onToggleSidebar }) => {
             <rect y="17" width="24" height="2.5" rx="1.25" fill="#ffffff" />
           </svg>
         </button>
+
+        {/* Filter Tahun */}
+        <FilterDropdown
+          icon={<IconCalendar size={14} stroke={2} />}
+          value={selectedTahun}
+          options={TAHUN_OPTIONS}
+          onChange={setSelectedTahun}
+        />
+
+        {/* Filter Triwulan */}
+        <FilterDropdown
+          icon={<IconCalendarStats size={14} stroke={2} />}
+          value={selectedTriwulan}
+          options={TRIWULAN_OPTIONS}
+          onChange={setSelectedTriwulan}
+        />
       </div>
       
       {/* Center Space */}

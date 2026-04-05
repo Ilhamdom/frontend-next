@@ -40,3 +40,181 @@ h1 {
   letter-spacing: -2%;
   text-transform: none;
 }
+
+/* TableWithAPI: zebra rows + subtle interactive accents */
+.table-zebra-innovative [class*="-table__container"] {
+  border: 1px solid #dbeafe;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 10px 24px rgba(15, 23, 42, 0.06);
+  table-layout: fixed;
+  width: 100%;
+}
+
+.table-zebra-innovative [class*="-table__header-cell"] {
+  background: linear-gradient(180deg, #eff6ff 0%, #dbeafe 100%);
+  color: #1e3a8a;
+  font-weight: 700;
+  white-space: pre-line;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+  line-height: 1.25;
+  vertical-align: middle;
+}
+
+.table-zebra-innovative [class*="-table__cell"] {
+  white-space: normal !important;
+  overflow-wrap: break-word;
+  word-break: normal;
+  vertical-align: top;
+}
+
+.table-zebra-innovative [class*="-table__cell"] > * {
+  min-width: 0;
+}
+
+.table-zebra-innovative .col-sasaran,
+.table-zebra-innovative .col-indikator {
+  white-space: normal !important;
+  overflow-wrap: break-word;
+  word-break: normal;
+  line-height: 1.4;
+}
+
+.table-zebra-innovative [class*="-table__body"] > [class*="-table__row"]:nth-child(odd) {
+  background-color: #ffffff;
+}
+
+.table-zebra-innovative [class*="-table__body"] > [class*="-table__row"]:nth-child(even) {
+  background-color: #eff6ff;
+}
+
+.table-zebra-innovative [class*="-table__row"] {
+  transition: background-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.table-zebra-innovative [class*="-table__row"]:hover {
+  background-color: #dbeafe;
+  box-shadow: inset 4px 0 0 #2563eb;
+}
+
+.table-zebra-innovative [class*="-table__cell"] {
+  border-bottom: 1px solid #e5e7eb;
+}
+
+/* Generic table utility for multi-line headers on manual tables */
+.table-head-wrap {
+  table-layout: fixed;
+  width: 100%;
+}
+
+.table-head-wrap th {
+  white-space: normal;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+  line-height: 1.25;
+  vertical-align: middle;
+}
+
+.table-head-wrap td {
+  white-space: normal;
+  overflow-wrap: anywhere;
+}
+
+/* Manual tables styled to match TableWithAPI visual language */
+.table-like-api {
+  table-layout: fixed;
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  border: 1px solid #dbeafe;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 10px 24px rgba(15, 23, 42, 0.06);
+}
+
+.table-like-api thead th {
+  background: linear-gradient(180deg, #eff6ff 0%, #dbeafe 100%);
+  color: #1e3a8a;
+  font-weight: 700;
+}
+
+.table-like-api tbody tr:nth-child(odd) {
+  background-color: #ffffff;
+}
+
+.table-like-api tbody tr:nth-child(even) {
+  background-color: #eff6ff;
+}
+
+.table-like-api tbody tr {
+  transition: background-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.table-like-api tbody tr:hover {
+  background-color: #dbeafe;
+  box-shadow: inset 4px 0 0 #2563eb;
+}
+
+.table-like-api td {
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.table-like-api tbody tr:last-child td {
+  border-bottom: none;
+}
+
+/* Reusable action buttons for all table rows */
+.table-action-icon-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 0.5rem;
+  border: 1px solid #bfdbfe;
+  background-color: #eff6ff;
+  color: #1d4ed8;
+  transition: all 0.2s ease;
+}
+
+.table-action-icon-btn:hover {
+  background-color: #dbeafe;
+  border-color: #93c5fd;
+  color: #1e40af;
+  transform: translateY(-1px);
+}
+
+.table-action-icon-btn--neutral {
+  background-color: #f8fafc;
+  border-color: #cbd5e1;
+  color: #475569;
+}
+
+.table-action-icon-btn--neutral:hover {
+  background-color: #e2e8f0;
+  border-color: #94a3b8;
+  color: #334155;
+}
+
+.table-action-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.35rem 0.75rem;
+  border-radius: 0.5rem;
+  border: 1px solid #bfdbfe;
+  background-color: #eff6ff;
+  color: #1d4ed8;
+  font-size: 0.75rem;
+  font-weight: 700;
+  line-height: 1;
+  transition: all 0.2s ease;
+}
+
+.table-action-btn:hover {
+  background-color: #dbeafe;
+  border-color: #93c5fd;
+  color: #1e40af;
+  transform: translateY(-1px);
+}

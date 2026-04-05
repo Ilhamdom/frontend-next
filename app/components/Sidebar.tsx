@@ -1,32 +1,47 @@
 "use client";
 import React from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname, useParams } from "next/navigation";
 import {
   IconDashboard,
   IconClipboardList,
+  IconChartBar,
+  IconChevronDown,
+  IconChecklist,
+  IconFileText,
+  IconFlag,
   IconTargetArrow,
   IconFocus2,
-  IconChecks,
   IconListDetails,
-  IconChartBar,
+  IconActivity,
   IconSitemap,
   IconLogout
 } from "@tabler/icons-react";
 
 type IconComponent = React.ComponentType<{ size?: number; stroke?: number }>;
 
-interface MenuItem {
+interface MenuChildItem {
   label: string;
   href: string;
   icon: IconComponent;
 }
 
-interface SidebarProps {
-  isOpen: boolean;
+interface MenuItem {
+  label: string;
+  href?: string;
+  children?: MenuChildItem[];
+  icon: IconComponent;
+  optional?: boolean;
 }
 
-const menuItems: MenuItem[] = [
+interface SidebarProps {
+  isOpen: boolean;
+  variant?: "admin" | "user";
+  showLaporan?: boolean;
+}
+
+const adminMenuItems: MenuItem[] = [
   {
     label: "Dashboard",
     href: "/[slug]/dashboard",
@@ -34,86 +49,155 @@ const menuItems: MenuItem[] = [
   },
   {
     label: "Perencanaan Kinerja",
-    href: "/[slug]/perencanaan-kinerja",
     icon: IconClipboardList as IconComponent,
-  },
-  {
-    label: "Visi, Misi & Tujuan",
-    href: "/[slug]/visi-misi-tujuan",
-    icon: IconTargetArrow as IconComponent,
-  },
-  {
-    label: "Sasaran Strategis",
-    href: "/[slug]/sasaran-strategis",
-    icon: IconFocus2 as IconComponent,
-  },
-  {
-    label: "Sasaran Program",
-    href: "/[slug]/sasaran-program",
-    icon: IconChecks as IconComponent,
-  },
-  {
-    label: "Sasaran Kegiatan",
-    href: "/[slug]/sasaran-kegiatan",
-    icon: IconListDetails as IconComponent,
+    children: [
+      { label: "Visi, Misi, dan Tujuan", href: "/[slug]/visi-misi-tujuan", icon: IconFlag as IconComponent },
+      { label: "Sasaran Strategis", href: "/[slug]/sasaran-strategis", icon: IconTargetArrow as IconComponent },
+      { label: "Sasaran Program", href: "/[slug]/sasaran-program", icon: IconFocus2 as IconComponent },
+      { label: "Sasaran Kegiatan", href: "/[slug]/sasaran-kegiatan", icon: IconListDetails as IconComponent },
+    ],
   },
   {
     label: "Pemantauan Kinerja",
-    href: "/[slug]/pemantauan-kinerja",
     icon: IconChartBar as IconComponent,
-  },
-  {
-    label: "Cascading",
-    href: "/[slug]/cascading",
-    icon: IconSitemap as IconComponent,
+    children: [
+      { label: "Sasaran Strategis", href: "/[slug]/pemantauan-kinerja", icon: IconActivity as IconComponent },
+      { label: "Cascading", href: "/[slug]/cascading", icon: IconSitemap as IconComponent },
+    ],
   },
 ];
 
-const Sidebar: React.FC<SidebarProps> = ({ isOpen }) => {
+const userMenuItems: MenuItem[] = [
+  {
+    label: "Dashboard",
+    href: "/[slug]/dashboard",
+    icon: IconDashboard as IconComponent,
+  },
+  {
+    label: "Pemantauan Kinerja",
+    icon: IconChartBar as IconComponent,
+    children: [
+      { label: "Sasaran Strategis", href: "/[slug]/sasaran-strategis", icon: IconActivity as IconComponent },
+      { label: "Cascading", href: "/[slug]/cascading", icon: IconSitemap as IconComponent },
+    ],
+  },
+  {
+    label: "Rencana Aksi",
+    href: "/[slug]/rencana-aksi",
+    icon: IconChecklist as IconComponent,
+  },
+  {
+    label: "Laporan",
+    href: "/[slug]/laporan",
+    icon: IconFileText as IconComponent,
+    optional: true,
+  },
+];
+
+const Sidebar: React.FC<SidebarProps> = ({ isOpen, variant = "admin", showLaporan = true }) => {
   const pathname = usePathname();
   const params = useParams();
   const slug = params.slug as string;
+
+  const baseMenuItems = variant === "user" ? userMenuItems : adminMenuItems;
+  const menuItems = baseMenuItems.filter((item) => !(item.optional && !showLaporan));
+  const menuTitle = variant === "user" ? "Menu User" : "Menu Utama";
+
+  const resolveHref = (href: string) => `/${slug}${href.slice(7)}`;
+
+  const isHrefActive = (href: string) => {
+    const resolved = resolveHref(href);
+    return pathname === resolved || pathname?.startsWith(`${resolved}/`);
+  };
   
   return (
     <aside
       className={`sticky top-0 h-screen shrink-0 overflow-y-auto overflow-x-hidden transition-all duration-300 ease-in-out bg-blue-900 border-r border-blue-900/50 custom-scrollbar
-        ${isOpen ? 'w-[260px] opacity-100 translate-x-0' : 'w-0 opacity-0 -translate-x-full'}
+        ${isOpen ? 'w-65 opacity-100 translate-x-0' : 'w-0 opacity-0 -translate-x-full'}
       `}
       aria-hidden={!isOpen}
     >
-      <div className="w-[260px] min-h-full flex flex-col py-6 px-4">
+      <div className="w-65 min-h-full flex flex-col py-6 px-4">
         {/* Branding */}
         <div className="flex flex-col items-center mb-8 shrink-0">
-          <div className="bg-gradient-to-br from-yellow-400 to-amber-600 rounded-xl w-12 h-12 flex items-center justify-center mb-3 shadow-lg shadow-yellow-500/20">
-            <span className="text-blue-950 font-extrabold text-2xl">L</span>
-          </div>
+          <Image
+            src="/logolanwhite.png"
+            alt="Logo LAN RI"
+            width={120}
+            height={120}
+            className="object-contain mb-3"
+            priority
+          />
           <div className="text-xl font-extrabold text-white tracking-wide">LAN RI</div>
           <div className="text-[10px] text-yellow-400 font-bold mt-1 tracking-widest bg-yellow-400/10 px-2.5 py-0.5 rounded-full border border-yellow-400/20">SI-REVA 2026</div>
         </div>
         
         {/* Navigation */}
         <div className="flex-1 flex flex-col">
-          <div className="text-[10px] text-blue-300/60 font-bold mb-3 px-2 tracking-widest uppercase">Menu Utama</div>
+          <div className="text-[10px] text-blue-300/60 font-bold mb-3 px-2 tracking-widest uppercase">{menuTitle}</div>
           <nav className="flex flex-col gap-1.5">
             {menuItems.map((item) => {
-              const active = pathname === `/${slug}${item.href.slice(7)}` || pathname?.startsWith(`/${slug}${item.href.slice(7)}/`);
+              const parentActive = item.href ? isHrefActive(item.href) : !!item.children?.some((child) => isHrefActive(child.href));
+
+              if (item.href) {
+                return (
+                  <Link
+                    key={item.label}
+                    href={resolveHref(item.href)}
+                    className={`group flex items-center gap-3 px-3 py-2.5 rounded-xl transition-all duration-200 text-sm font-medium ${
+                      parentActive
+                        ? "bg-blue-600 text-white shadow-md shadow-blue-900/20"
+                        : "text-blue-100/70 hover:bg-white/5 hover:text-white"
+                    }`}
+                  >
+                    <span className={`flex items-center justify-center transition-colors duration-200 ${
+                      parentActive ? "text-white" : "text-blue-300/70 group-hover:text-blue-200"
+                    }`}>
+                      <item.icon size={20} stroke={1.5} />
+                    </span>
+                    {item.label}
+                  </Link>
+                );
+              }
+
               return (
-                <Link
-                  key={item.href}
-                  href={`/${slug}${item.href.slice(7)}`}
-                  className={`group flex items-center gap-3 px-3 py-2.5 rounded-xl transition-all duration-200 text-sm font-medium ${
-                    active 
-                      ? "bg-blue-600 text-white shadow-md shadow-blue-900/20" 
-                      : "text-blue-100/70 hover:bg-white/5 hover:text-white"
-                  }`}
-                >
-                  <span className={`flex items-center justify-center transition-colors duration-200 ${
-                    active ? "text-white" : "text-blue-300/70 group-hover:text-blue-200"
-                  }`}>
-                    <item.icon size={20} stroke={1.5} />
-                  </span>
-                  {item.label}
-                </Link>
+                <div key={item.label} className="rounded-xl overflow-hidden border border-white/5 bg-white/2">
+                  <div
+                    className={`flex items-center justify-between gap-3 px-3 py-2.5 text-sm font-medium ${
+                      parentActive ? "text-white bg-blue-700/50" : "text-blue-100/80"
+                    }`}
+                  >
+                    <div className="flex items-center gap-3 min-w-0">
+                      <span className={`${parentActive ? "text-white" : "text-blue-300/80"}`}>
+                        <item.icon size={20} stroke={1.5} />
+                      </span>
+                      <span className="truncate">{item.label}</span>
+                    </div>
+                    <IconChevronDown size={16} stroke={2} className={`${parentActive ? "text-blue-100" : "text-blue-300/70"}`} />
+                  </div>
+
+                  <div className="pb-2 px-2">
+                    {item.children?.map((child) => {
+                      const childActive = isHrefActive(child.href);
+                      return (
+                        <Link
+                          key={child.href}
+                          href={resolveHref(child.href)}
+                          className={`group flex items-center gap-2 pl-6 pr-3 py-2 rounded-lg text-sm transition-all duration-200 ${
+                            childActive
+                              ? "bg-blue-600 text-white shadow-sm shadow-blue-900/20"
+                              : "text-blue-100/70 hover:bg-white/5 hover:text-white"
+                          }`}
+                        >
+                          <span className={`flex items-center justify-center ${childActive ? "text-white" : "text-blue-300/70 group-hover:text-blue-200"}`}>
+                            <child.icon size={16} stroke={1.8} />
+                          </span>
+                          <span className="leading-snug">{child.label}</span>
+                        </Link>
+                      );
+                    })}
+                  </div>
+                </div>
               );
             })}
           </nav>

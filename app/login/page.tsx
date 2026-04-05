@@ -1,10 +1,7 @@
-import AuthLayout from "../AuthLayout";
-import LoginForm from "../../src/components/LoginForm";
+import AuthLayout from "../components/auth/AuthLayout";
+import LoginForm from "../components/auth/LoginForm";
+import { createElement } from "react";
 
 export default function LoginPage() {
-	return (
-		<AuthLayout>
-			<LoginForm />
-		</AuthLayout>
-	);
+  return createElement(AuthLayout, null, createElement(LoginForm));
 }

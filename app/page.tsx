@@ -1,12 +1,12 @@
 
 
-import Navbar from "./Navbar";
-import HeroSection from "./HeroSection";
-import VisiMisiSection from "./VisiMisiSection";
-import DasarHukumSection from "./DasarHukumSection";
-import InformasiLainnyaSection from "../src/components/InformasiLainnyaSection";
-import Footer from "./Footer";
-import FloatingToolbar from "./FloatingToolbar";
+import Navbar from "@/components/navbar/Navbar";
+import HeroSection from "@/components/HeroSection";
+import VisiMisiSection from "@/components/VisiMisiSection";
+import DasarHukumSection from "@/components/DasarHukumSection";
+import InformasiLainnyaSection from "@/components/InformasiLainnyaSection";
+import Footer from "@/components/footer/Footer";
+import FloatingToolbar from "@/components/FloatingToolbar";
 
 export default function Home() {
   return (
