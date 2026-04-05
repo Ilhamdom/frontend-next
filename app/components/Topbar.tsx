@@ -1,7 +1,6 @@
 "use client";
 import React, { useState, useRef, useEffect } from "react";
 import Link from "next/link";
-import Image from "next/image";
 import { IconChevronDown, IconLogout, IconCalendar, IconCalendarStats } from "@tabler/icons-react";
 
 interface TopbarProps {
@@ -117,17 +116,7 @@ const Topbar: React.FC<TopbarProps> = ({ onToggleSidebar }) => {
         />
       </div>
       
-      {/* Center: Logo LAN */}
-      <div className="flex-1 flex items-center justify-center">
-        <Image
-          src="/logolanwhite.png"
-          alt="Logo LAN RI"
-          width={40}
-          height={40}
-          className="object-contain"
-          priority
-        />
-      </div>
+      <div className="flex-1" />
       
       {/* Right: Notif & User */}
       <div className="flex items-center gap-3 min-w-[220px] justify-end">
