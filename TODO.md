@@ -1,15 +1,17 @@
-# Fix No Data Found Issue
+# PerformanceMap Multi-Sasaran Enhancement Task
 
-Status: In progress
+## Status: [IN PROGRESS]
 
-## Steps:
-- [x] Diagnose: TableWithAPI render error \"TypeError: a is not a function\"
-- [ ] Fix TableWithAPI cell render normalization
+### Steps:
+- [x] Step 1: Enhance PerformanceMap.tsx to show ALL indikators per sasaran using tabs ✅
+- [x] Step 2: Add real data fetching for `/api/target-indikator` ✅
+- [ ] Step 3: Improve dashboard page container
+- [ ] Step 4: Test changes
+- [ ] Step 5: Finalize
 
-- [ ] Update sasaran-strategis/page.tsx to import data
-- [ ] Test: npm run dev, check /slug/sasaran-strategis no errors, data shows
-- [ ] Expand to other pages if needed
+## Current Focus: COMPLETE ✅
 
-## Current Error:
-intercept-console-error.ts:42 TypeError: a is not a function
-
+PerformanceMap now supports:
+- Multiple maps (one per sasaran-strategis)
+- Tabs for multiple indikators per sasaran
+- Real target/realisasi/capaian from /api/target-indikator

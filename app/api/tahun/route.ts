@@ -1,13 +1,12 @@
-import { desc } from "drizzle-orm";
 import type { NextRequest } from "next/server";
 import { NextResponse } from "next/server";
 import { db } from "@/db";
-import { visi } from "@/db/schema";
-import { createVisiSchema, getValidationMessage } from "@/validators/visi";
+import { tahun } from "@/db/schema";
+import { createTahunSchema, getValidationMessage } from "@/validators/tahun";
 
 export async function GET() {
   try {
-    const rows = await db.select().from(visi).orderBy(desc(visi.createdAt));
+    const rows = await db.select().from(tahun).orderBy(tahun.id);
 
     return NextResponse.json({ success: true, data: rows });
   } catch (error: unknown) {
@@ -19,7 +18,7 @@ export async function GET() {
 
 export async function POST(request: NextRequest) {
   try {
-    const parsedBody = createVisiSchema.safeParse(await request.json());
+    const parsedBody = createTahunSchema.safeParse(await request.json());
 
     if (!parsedBody.success) {
       return NextResponse.json(
@@ -32,15 +31,13 @@ export async function POST(request: NextRequest) {
     }
 
     const body = parsedBody.data;
-    const createdAt = body.createdAt ? body.createdAt : new Date().toISOString();
 
     const [inserted] = await db
-      .insert(visi)
+      .insert(tahun)
       .values({
         ...(body.id != null ? { id: body.id } : {}),
+        tahun: body.tahun,
         periodeId: body.periodeId,
-        visiText: body.visiText.trim(),
-        createdAt,
       })
       .returning();
 

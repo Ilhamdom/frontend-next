@@ -70,8 +70,8 @@ export async function PUT(request: NextRequest, { params }: RouteParams) {
 
     const updates: {
       periodeId?: number | null;
-      visiText?: string | null;
-      createdAt?: Date | null;
+      visiText?: string;
+      createdAt?: string | null;
     } = {};
 
     if (body.periodeId !== undefined) {
@@ -79,21 +79,25 @@ export async function PUT(request: NextRequest, { params }: RouteParams) {
     }
 
     if (body.visiText !== undefined) {
-      updates.visiText = body.visiText?.trim() || null;
+      updates.visiText = body.visiText?.trim() || undefined;
     }
 
     if (body.createdAt !== undefined) {
       if (body.createdAt === null || body.createdAt === "") {
         updates.createdAt = null;
       } else {
-        const parsed = new Date(body.createdAt);
-        updates.createdAt = parsed;
+        updates.createdAt = body.createdAt;
       }
     }
 
+    // Filter out undefined values
+    const filteredUpdates = Object.fromEntries(
+      Object.entries(updates).filter(([_, value]) => value !== undefined)
+    );
+
     const [updated] = await db
       .update(visi)
-      .set(updates)
+      .set(filteredUpdates)
       .where(eq(visi.id, id))
       .returning();
 

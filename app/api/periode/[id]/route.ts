@@ -2,9 +2,8 @@ import { eq } from "drizzle-orm";
 import type { NextRequest } from "next/server";
 import { NextResponse } from "next/server";
 import { db } from "@/db";
-import { misi } from "@/db/schema";
-import { getValidationMessage } from "@/validators/common";
-import { updateMisiSchema } from "@/validators/misi";
+import { periode } from "@/db/schema";
+import { getValidationMessage, updatePeriodeSchema } from "@/validators/periode";
 
 type RouteParams = {
   params: Promise<{ id: string }>;
@@ -30,11 +29,11 @@ export async function GET(_request: NextRequest, { params }: RouteParams) {
       );
     }
 
-    const row = await db.query.misi.findFirst({ where: eq(misi.id, id) });
+    const row = await db.query.periode.findFirst({ where: eq(periode.id, id) });
 
     if (!row) {
       return NextResponse.json(
-        { success: false, message: "Data misi tidak ditemukan." },
+        { success: false, message: "Data periode tidak ditemukan." },
         { status: 404 }
       );
     }
@@ -58,44 +57,34 @@ export async function PUT(request: NextRequest, { params }: RouteParams) {
       );
     }
 
-    const parsedBody = updateMisiSchema.safeParse(await request.json());
+    const parsedBody = updatePeriodeSchema.safeParse(await request.json());
 
     if (!parsedBody.success) {
       return NextResponse.json(
-        { success: false, message: getValidationMessage(parsedBody.error) },
+        {
+          success: false,
+          message: getValidationMessage(parsedBody.error),
+        },
         { status: 400 }
       );
     }
 
     const body = parsedBody.data;
-    const updates: {
-      visiId?: number | null;
-      kode?: string | null;
-      misiText?: string;
-    } = {};
 
-    if (body.visiId !== undefined) {
-      updates.visiId = body.visiId;
-    }
-
-    if (body.kode !== undefined) {
-      updates.kode = body.kode?.trim() || null;
-    }
-
-    if (body.misiText !== undefined) {
-      updates.misiText = body.misiText?.trim() || undefined;
-    }
-
-    // Filter out undefined values
-    const filteredUpdates = Object.fromEntries(
-      Object.entries(updates).filter(([_, value]) => value !== undefined)
-    );
-
-    const [updated] = await db.update(misi).set(filteredUpdates).where(eq(misi.id, id)).returning();
+    const [updated] = await db
+      .update(periode)
+      .set({
+        ...(body.nama != null ? { nama: body.nama } : {}),
+        ...(body.tahunMulai != null ? { tahunMulai: body.tahunMulai } : {}),
+        ...(body.tahunSelesai != null ? { tahunSelesai: body.tahunSelesai } : {}),
+        ...(body.isActive != null ? { isActive: body.isActive } : {}),
+      })
+      .where(eq(periode.id, id))
+      .returning();
 
     if (!updated) {
       return NextResponse.json(
-        { success: false, message: "Data misi tidak ditemukan." },
+        { success: false, message: "Data periode tidak ditemukan." },
         { status: 404 }
       );
     }
@@ -103,6 +92,7 @@ export async function PUT(request: NextRequest, { params }: RouteParams) {
     return NextResponse.json({ success: true, data: updated });
   } catch (error: unknown) {
     const message = error instanceof Error ? error.message : "Terjadi kesalahan server.";
+
     return NextResponse.json({ success: false, message }, { status: 500 });
   }
 }
@@ -119,11 +109,11 @@ export async function DELETE(_request: NextRequest, { params }: RouteParams) {
       );
     }
 
-    const [deleted] = await db.delete(misi).where(eq(misi.id, id)).returning();
+    const [deleted] = await db.delete(periode).where(eq(periode.id, id)).returning();
 
     if (!deleted) {
       return NextResponse.json(
-        { success: false, message: "Data misi tidak ditemukan." },
+        { success: false, message: "Data periode tidak ditemukan." },
         { status: 404 }
       );
     }
@@ -131,6 +121,7 @@ export async function DELETE(_request: NextRequest, { params }: RouteParams) {
     return NextResponse.json({ success: true, data: deleted });
   } catch (error: unknown) {
     const message = error instanceof Error ? error.message : "Terjadi kesalahan server.";
+
     return NextResponse.json({ success: false, message }, { status: 500 });
   }
 }

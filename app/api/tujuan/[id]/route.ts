@@ -71,7 +71,7 @@ export async function PUT(request: NextRequest, { params }: RouteParams) {
     const updates: {
       misiId?: number | null;
       kode?: string | null;
-      tujuanText?: string | null;
+      tujuanText?: string;
     } = {};
 
     if (body.misiId !== undefined) {
@@ -83,12 +83,17 @@ export async function PUT(request: NextRequest, { params }: RouteParams) {
     }
 
     if (body.tujuanText !== undefined) {
-      updates.tujuanText = body.tujuanText?.trim() || null;
+      updates.tujuanText = body.tujuanText?.trim() || undefined;
     }
+
+    // Filter out undefined values
+    const filteredUpdates = Object.fromEntries(
+      Object.entries(updates).filter(([_, value]) => value !== undefined)
+    );
 
     const [updated] = await db
       .update(tujuan)
-      .set(updates)
+      .set(filteredUpdates)
       .where(eq(tujuan.id, id))
       .returning();
 

@@ -2,12 +2,13 @@ import { desc } from "drizzle-orm";
 import type { NextRequest } from "next/server";
 import { NextResponse } from "next/server";
 import { db } from "@/db";
-import { visi } from "@/db/schema";
-import { createVisiSchema, getValidationMessage } from "@/validators/visi";
+import { targetIndikator } from "@/db/schema";
+import { getValidationMessage } from "@/validators/common";
+import { createTargetKinerjaSchema } from "@/validators/target-kinerja";
 
 export async function GET() {
   try {
-    const rows = await db.select().from(visi).orderBy(desc(visi.createdAt));
+    const rows = await db.select().from(targetIndikator).orderBy(desc(targetIndikator.id));
 
     return NextResponse.json({ success: true, data: rows });
   } catch (error: unknown) {
@@ -19,28 +20,25 @@ export async function GET() {
 
 export async function POST(request: NextRequest) {
   try {
-    const parsedBody = createVisiSchema.safeParse(await request.json());
+    const parsedBody = createTargetKinerjaSchema.safeParse(await request.json());
 
     if (!parsedBody.success) {
       return NextResponse.json(
-        {
-          success: false,
-          message: getValidationMessage(parsedBody.error),
-        },
+        { success: false, message: getValidationMessage(parsedBody.error) },
         { status: 400 }
       );
     }
 
     const body = parsedBody.data;
-    const createdAt = body.createdAt ? body.createdAt : new Date().toISOString();
 
     const [inserted] = await db
-      .insert(visi)
+      .insert(targetIndikator)
       .values({
         ...(body.id != null ? { id: body.id } : {}),
-        periodeId: body.periodeId,
-        visiText: body.visiText.trim(),
-        createdAt,
+        indikatorId: body.indikatorId,
+        tahunId: body.tahunId,
+        target: body.target.toString(),
+        realisasi: body.realisasi.toString(),
       })
       .returning();
 

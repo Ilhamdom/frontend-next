@@ -1,13 +1,12 @@
-import { desc } from "drizzle-orm";
 import type { NextRequest } from "next/server";
 import { NextResponse } from "next/server";
 import { db } from "@/db";
-import { visi } from "@/db/schema";
-import { createVisiSchema, getValidationMessage } from "@/validators/visi";
+import { periode } from "@/db/schema";
+import { createPeriodeSchema, getValidationMessage } from "@/validators/periode";
 
 export async function GET() {
   try {
-    const rows = await db.select().from(visi).orderBy(desc(visi.createdAt));
+    const rows = await db.select().from(periode).orderBy(periode.id);
 
     return NextResponse.json({ success: true, data: rows });
   } catch (error: unknown) {
@@ -19,7 +18,7 @@ export async function GET() {
 
 export async function POST(request: NextRequest) {
   try {
-    const parsedBody = createVisiSchema.safeParse(await request.json());
+    const parsedBody = createPeriodeSchema.safeParse(await request.json());
 
     if (!parsedBody.success) {
       return NextResponse.json(
@@ -32,15 +31,15 @@ export async function POST(request: NextRequest) {
     }
 
     const body = parsedBody.data;
-    const createdAt = body.createdAt ? body.createdAt : new Date().toISOString();
 
     const [inserted] = await db
-      .insert(visi)
+      .insert(periode)
       .values({
         ...(body.id != null ? { id: body.id } : {}),
-        periodeId: body.periodeId,
-        visiText: body.visiText.trim(),
-        createdAt,
+        nama: body.nama,
+        tahunMulai: body.tahunMulai,
+        tahunSelesai: body.tahunSelesai,
+        isActive: body.isActive,
       })
       .returning();
 

@@ -2,9 +2,9 @@ import { eq } from "drizzle-orm";
 import type { NextRequest } from "next/server";
 import { NextResponse } from "next/server";
 import { db } from "@/db";
-import { misi } from "@/db/schema";
+import { sasaranKegiatan } from "@/db/schema";
 import { getValidationMessage } from "@/validators/common";
-import { updateMisiSchema } from "@/validators/misi";
+import { updateSasaranKegiatanSchema } from "@/validators/sasaran-kegiatan";
 
 type RouteParams = {
   params: Promise<{ id: string }>;
@@ -30,11 +30,11 @@ export async function GET(_request: NextRequest, { params }: RouteParams) {
       );
     }
 
-    const row = await db.query.misi.findFirst({ where: eq(misi.id, id) });
+    const row = await db.query.sasaranKegiatan.findFirst({ where: eq(sasaranKegiatan.id, id) });
 
     if (!row) {
       return NextResponse.json(
-        { success: false, message: "Data misi tidak ditemukan." },
+        { success: false, message: "Data sasaran kegiatan tidak ditemukan." },
         { status: 404 }
       );
     }
@@ -58,7 +58,7 @@ export async function PUT(request: NextRequest, { params }: RouteParams) {
       );
     }
 
-    const parsedBody = updateMisiSchema.safeParse(await request.json());
+    const parsedBody = updateSasaranKegiatanSchema.safeParse(await request.json());
 
     if (!parsedBody.success) {
       return NextResponse.json(
@@ -69,21 +69,21 @@ export async function PUT(request: NextRequest, { params }: RouteParams) {
 
     const body = parsedBody.data;
     const updates: {
-      visiId?: number | null;
+      kegiatanId?: number | null;
       kode?: string | null;
-      misiText?: string;
+      sasaranText?: string;
     } = {};
 
-    if (body.visiId !== undefined) {
-      updates.visiId = body.visiId;
+    if (body.kegiatanId !== undefined) {
+      updates.kegiatanId = body.kegiatanId;
     }
 
     if (body.kode !== undefined) {
       updates.kode = body.kode?.trim() || null;
     }
 
-    if (body.misiText !== undefined) {
-      updates.misiText = body.misiText?.trim() || undefined;
+    if (body.sasaranText !== undefined) {
+      updates.sasaranText = body.sasaranText?.trim() || undefined;
     }
 
     // Filter out undefined values
@@ -91,11 +91,15 @@ export async function PUT(request: NextRequest, { params }: RouteParams) {
       Object.entries(updates).filter(([_, value]) => value !== undefined)
     );
 
-    const [updated] = await db.update(misi).set(filteredUpdates).where(eq(misi.id, id)).returning();
+    const [updated] = await db
+      .update(sasaranKegiatan)
+      .set(filteredUpdates)
+      .where(eq(sasaranKegiatan.id, id))
+      .returning();
 
     if (!updated) {
       return NextResponse.json(
-        { success: false, message: "Data misi tidak ditemukan." },
+        { success: false, message: "Data sasaran kegiatan tidak ditemukan." },
         { status: 404 }
       );
     }
@@ -119,11 +123,14 @@ export async function DELETE(_request: NextRequest, { params }: RouteParams) {
       );
     }
 
-    const [deleted] = await db.delete(misi).where(eq(misi.id, id)).returning();
+    const [deleted] = await db
+      .delete(sasaranKegiatan)
+      .where(eq(sasaranKegiatan.id, id))
+      .returning();
 
     if (!deleted) {
       return NextResponse.json(
-        { success: false, message: "Data misi tidak ditemukan." },
+        { success: false, message: "Data sasaran kegiatan tidak ditemukan." },
         { status: 404 }
       );
     }

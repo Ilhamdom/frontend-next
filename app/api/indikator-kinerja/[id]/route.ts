@@ -71,7 +71,7 @@ export async function PUT(request: NextRequest, { params }: RouteParams) {
     const updates: {
       sasaranId?: number | null;
       kode?: string | null;
-      namaIndikator?: string | null;
+      namaIndikator?: string;
       satuan?: string | null;
       jenis?: string | null;
       baseline?: string | null;
@@ -86,7 +86,7 @@ export async function PUT(request: NextRequest, { params }: RouteParams) {
     }
 
     if (body.namaIndikator !== undefined) {
-      updates.namaIndikator = body.namaIndikator?.trim() || null;
+      updates.namaIndikator = body.namaIndikator?.trim() || undefined;
     }
 
     if (body.satuan !== undefined) {
@@ -101,9 +101,14 @@ export async function PUT(request: NextRequest, { params }: RouteParams) {
       updates.baseline = body.baseline;
     }
 
+    // Filter out undefined values
+    const filteredUpdates = Object.fromEntries(
+      Object.entries(updates).filter(([_, value]) => value !== undefined)
+    );
+
     const [updated] = await db
       .update(indikatorKinerja)
-      .set(updates)
+      .set(filteredUpdates)
       .where(eq(indikatorKinerja.id, id))
       .returning();
 
