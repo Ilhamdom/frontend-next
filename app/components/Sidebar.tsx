@@ -61,7 +61,7 @@ const adminMenuItems: MenuItem[] = [
     label: "Pemantauan Kinerja",
     icon: IconChartBar as IconComponent,
     children: [
-      { label: "Sasaran Strategis", href: "/[slug]/sasaran-strategis", icon: IconActivity as IconComponent },
+      
       { label: "Cascading", href: "/[slug]/cascading", icon: IconSitemap as IconComponent },
     ],
   },

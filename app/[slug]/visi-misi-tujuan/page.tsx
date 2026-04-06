@@ -1,36 +1,58 @@
 import LayoutShell from "@/components/LayoutShell";
 import PageHeader from "@/components/PageHeader";
 import TableCard from "@/components/TableCard";
+import { getVisiMisiTujuan, type VisiItem } from "@/db/queries/visi-misi-tujuan";
 import { IconEye, IconPencil } from "@tabler/icons-react";
 
-const visiMisiRows = [
-  {
-    id: 1,
-    visi: "Menjadi lembaga pembina administrasi negara yang unggul dalam mewujudkan birokrasi berkelas dunia untuk Indonesia Maju.",
-    misi: "Meningkatkan kualitas pengembangan kompetensi ASN yang adaptif, berintegritas, dan berorientasi hasil.",
-    tujuan: "Terwujudnya ASN profesional melalui sistem pembelajaran terintegrasi, berbasis kebutuhan jabatan, dan berkelanjutan.",
-  },
-  {
-    id: 2,
-    visi: "Menjadi lembaga pembina administrasi negara yang unggul dalam mewujudkan birokrasi berkelas dunia untuk Indonesia Maju.",
-    misi: "Mengembangkan inovasi administrasi pemerintahan dan tata kelola kelembagaan publik berbasis bukti.",
-    tujuan: "Meningkatnya inovasi kebijakan dan kelembagaan untuk mempercepat transformasi birokrasi dan kualitas layanan publik.",
-  },
-  {
-    id: 3,
-    visi: "Menjadi lembaga pembina administrasi negara yang unggul dalam mewujudkan birokrasi berkelas dunia untuk Indonesia Maju.",
-    misi: "Memperkuat tata kelola kinerja, akuntabilitas organisasi, serta budaya kerja berorientasi dampak.",
-    tujuan: "Meningkatnya akuntabilitas kinerja organisasi melalui penguatan manajemen kinerja, evaluasi, dan pengendalian internal.",
-  },
-  {
-    id: 4,
-    visi: "Menjadi lembaga pembina administrasi negara yang unggul dalam mewujudkan birokrasi berkelas dunia untuk Indonesia Maju.",
-    misi: "Mempercepat transformasi digital layanan kelembagaan dan manajemen pengetahuan administrasi negara.",
-    tujuan: "Terbangunnya ekosistem layanan digital kelembagaan yang terpadu, inklusif, dan responsif terhadap kebutuhan pemangku kepentingan.",
-  },
-];
+type TableRow = {
+  id: string;
+  visi: string;
+  misi: string;
+  tujuan: string;
+};
 
-export default function VisiMisiPage() {
+function flattenRows(items: VisiItem[]): TableRow[] {
+  return items.flatMap((visiItem) => {
+    if (visiItem.misi.length === 0) {
+      return [{
+        id: `visi-${visiItem.id}`,
+        visi: visiItem.visiText ?? "-",
+        misi: "-",
+        tujuan: "-",
+      }];
+    }
+
+    return visiItem.misi.flatMap((misiItem) => {
+      if (misiItem.tujuan.length === 0) {
+        return [{
+          id: `misi-${misiItem.id}`,
+          visi: visiItem.visiText ?? "-",
+          misi: misiItem.misiText ?? "-",
+          tujuan: "-",
+        }];
+      }
+
+      return misiItem.tujuan.map((tujuanItem) => ({
+        id: `tujuan-${tujuanItem.id}`,
+        visi: visiItem.visiText ?? "-",
+        misi: misiItem.misiText ?? "-",
+        tujuan: tujuanItem.tujuanText ?? "-",
+      }));
+    });
+  });
+}
+
+export default async function VisiMisiPage() {
+  let rows: TableRow[] = [];
+  let errorMessage: string | null = null;
+
+  try {
+    const data = await getVisiMisiTujuan();
+    rows = flattenRows(data);
+  } catch (error: unknown) {
+    errorMessage = error instanceof Error ? error.message : "Gagal memuat data visi, misi, dan tujuan.";
+  }
+
   return (
     <LayoutShell>
       <PageHeader
@@ -49,7 +71,7 @@ export default function VisiMisiPage() {
             </tr>
           </thead>
           <tbody>
-            {visiMisiRows.map((row, idx) => (
+            {rows.map((row, idx) => (
               <tr key={row.id}>
                 <td className="text-center px-2 py-2 font-semibold">{idx + 1}</td>
                 <td className="px-3 py-2">{row.visi}</td>
@@ -75,6 +97,13 @@ export default function VisiMisiPage() {
                 </td>
               </tr>
             ))}
+            {rows.length === 0 && (
+              <tr>
+                <td className="px-3 py-4 text-center text-sm text-gray-500" colSpan={5}>
+                  {errorMessage ?? "Belum ada data visi, misi, dan tujuan."}
+                </td>
+              </tr>
+            )}
           </tbody>
         </table>
       </TableCard>
