@@ -20,7 +20,7 @@ const AppShell: React.FC<AppShellProps> = ({ sidebar, topbar, children }) => {
         {topbar}
         {/* Main Content */}
         <main className="flex-1 p-8 lg:p-10 bg-[#f6f8fa] overflow-y-auto">
-          <div className="w-full max-w-screen-xl mx-auto">
+          <div className="w-full max-w-7xl mx-auto">
             {children}
           </div>
         </main>

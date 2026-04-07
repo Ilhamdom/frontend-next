@@ -16,34 +16,54 @@ export default function SasaranStrategisPage() {
 
   const loading = sasLoading || indikLoading || targetLoading;
 
-  let data = [];
+  let data: Array<{
+    id: number;
+    sasaran_strategis: string;
+    indikator_kinerja: string;
+    target_renstra: Record<number, string>;
+    target_perjanjian: Record<number, string>;
+    capaian: Record<number, string>;
+    persentase: Record<number, string>;
+  }> = [];
 
   if (!loading && sasaranRes?.success && indikatorRes?.success && targetRes?.success) {
-    const sasaranMap: Record<number, any> = sasaranRes.data.reduce((acc: Record<number, any>, s: {id: number}) => {
+    type Sasaran = { id: number; sasaranText: string };
+    type Indikator = { id: number; sasaranId: number; namaIndikator: string };
+    type Target = { indikatorId: number; tahun: { tahun: number }; target: string };
+
+    const sasaranMap: Record<number, Sasaran> = sasaranRes.data.reduce((acc: Record<number, Sasaran>, s: Sasaran) => {
       acc[s.id] = s;
       return acc;
     }, {});
-    
+
     const targetMap: Record<string, string> = {};
-    targetRes.data.forEach((target: any) => {
+    (targetRes.data as Target[]).forEach((target) => {
       if (target.tahun) {
         targetMap[`${target.indikatorId}-${target.tahun.tahun}`] = target.target;
       }
     });
-    
-    data = indikatorRes.data.map((indikator: any) => {
+
+    data = (indikatorRes.data as Indikator[]).map((indikator) => {
       const sasaran = sasaranMap[indikator.sasaranId];
       if (!sasaran) return null;
       return {
         id: indikator.id,
         sasaran_strategis: sasaran.sasaranText,
         indikator_kinerja: indikator.namaIndikator,
-        target_renstra: years.reduce((acc, y) => ({...acc, [y]: targetMap[`${indikator.id}-${y}`] || '-'}), {}),
-        target_perjanjian: years.reduce((acc, y) => ({...acc, [y]: '-'}), {}),
-        capaian: years.reduce((acc, y) => ({...acc, [y]: '-'}), {}),
-        persentase: years.reduce((acc, y) => ({...acc, [y]: '-'}), {}),
+        target_renstra: years.reduce((acc, y) => ({ ...acc, [y]: targetMap[`${indikator.id}-${y}`] || '-' }), {} as Record<number, string>),
+        target_perjanjian: years.reduce((acc, y) => ({ ...acc, [y]: '-' }), {} as Record<number, string>),
+        capaian: years.reduce((acc, y) => ({ ...acc, [y]: '-' }), {} as Record<number, string>),
+        persentase: years.reduce((acc, y) => ({ ...acc, [y]: '-' }), {} as Record<number, string>),
       };
-    }).filter(Boolean);
+    }).filter(Boolean) as Array<{
+      id: number;
+      sasaran_strategis: string;
+      indikator_kinerja: string;
+      target_renstra: Record<number, string>;
+      target_perjanjian: Record<number, string>;
+      capaian: Record<number, string>;
+      persentase: Record<number, string>;
+    }>;
   }
 
   if (loading) {

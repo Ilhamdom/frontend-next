@@ -43,7 +43,7 @@ export default function SummaryCardsRow({ role }: SummaryCardsRowProps) {
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-10">
       {/* 3 summary cards */}
       {summaryData.map((item, idx) => (
-        <div key={item.label} className="bg-white rounded-2xl border border-gray-200 shadow-sm p-5 md:p-6 flex flex-col min-h-[110px] relative">
+        <div key={item.label} className="bg-white rounded-2xl border border-gray-200 shadow-sm p-5 md:p-6 flex flex-col min-h-27.5 relative">
           <div className="flex items-center w-full">
             {/* Icon kiri */}
             <div className="mr-2">{item.icon}</div>
@@ -55,7 +55,7 @@ export default function SummaryCardsRow({ role }: SummaryCardsRowProps) {
         </div>
       ))}
       {/* Card 4: Capaian Pemantauan Kinerja */}
-      <div className="bg-blue-900 rounded-2xl shadow-sm p-5 md:p-6 flex flex-col items-center justify-center min-h-[110px] relative">
+      <div className="bg-blue-900 rounded-2xl shadow-sm p-5 md:p-6 flex flex-col items-center justify-center min-h-27.5 relative">
         <span className="absolute right-4 top-4 text-xs bg-blue-800 text-white px-2 py-0.5 rounded-full font-bold">%</span>
         <span className="text-3xl font-extrabold text-white mb-1">
           {role === "admin" ? "78.5%" : "82.0%"}

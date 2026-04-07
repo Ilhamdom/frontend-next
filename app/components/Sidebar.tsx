@@ -16,6 +16,8 @@ import {
   IconListDetails,
   IconActivity,
   IconSitemap,
+  IconDatabase,
+  IconUser,
   IconLogout
 } from "@tabler/icons-react";
 
@@ -63,6 +65,14 @@ const adminMenuItems: MenuItem[] = [
     children: [
       
       { label: "Cascading", href: "/[slug]/cascading", icon: IconSitemap as IconComponent },
+    ],
+  },
+  {
+    label: "Data Master",
+    icon: IconDatabase as IconComponent,
+    children: [
+      { label: "Master Unit Kerja", href: "/[slug]/master-unit-kerja", icon: IconSitemap as IconComponent },
+      { label: "Master User", href: "/[slug]/master-user", icon: IconUser as IconComponent },
     ],
   },
 ];
@@ -128,8 +138,8 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, variant = "admin", showLapora
             className="object-contain mb-3"
             priority
           />
-          <div className="text-xl font-extrabold text-white tracking-wide">LAN RI</div>
-          <div className="text-[10px] text-yellow-400 font-bold mt-1 tracking-widest bg-yellow-400/10 px-2.5 py-0.5 rounded-full border border-yellow-400/20">SI-REVA 2026</div>
+          
+          <div className="text-[15px] text-yellow-400 font-bold mt-1 tracking-widest bg-yellow-400/10 px-2.5 py-0.5 rounded-full border border-yellow-400/20">SI-REVA NG</div>
         </div>
         
         {/* Navigation */}

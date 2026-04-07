@@ -42,17 +42,16 @@ export default function SasaranKegiatanPage() {
       <PageHeader
         title="Sasaran Kegiatan (SK)"
         description="Daftar rinci kegiatan operasional (Level Administrator/Pengawas)."
-        action={
-          <button className="bg-emerald-600 text-white px-4 py-2 rounded-lg font-semibold text-sm hover:bg-emerald-700">Lapor Realisasi</button>
-        }
       />
       <TableCard
         title="Daftar Sasaran Kegiatan"
         toolbar={
-          <div className="flex gap-2">
-            <button className="px-3 py-1 rounded-lg border border-emerald-600 text-emerald-700 text-sm font-semibold hover:bg-emerald-50">Semua</button>
-            <button className="px-3 py-1 rounded-lg border border-emerald-600 text-emerald-700 text-sm font-semibold hover:bg-emerald-50">Berjalan</button>
-          </div>
+          <button
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-emerald-700 hover:bg-emerald-800 text-white font-semibold shadow text-sm"
+            type="button"
+          >
+            + Tambah Sasaran Kegiatan
+          </button>
         }
       >
         <table className="min-w-full text-sm table-head-wrap table-like-api">

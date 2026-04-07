@@ -43,9 +43,12 @@ export default function SasaranProgramPage() {
       <TableCard
         title="Daftar Sasaran Program"
         toolbar={
-          <select className="border border-gray-300 rounded-lg px-3 py-1 text-sm">
-            <option>Filter by SS: Semua</option>
-          </select>
+          <button
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-blue-700 hover:bg-blue-800 text-white font-semibold shadow text-sm"
+            type="button"
+          >
+            + Tambah Sasaran Program
+          </button>
         }
       >
         <table className="min-w-full text-sm table-head-wrap table-like-api">

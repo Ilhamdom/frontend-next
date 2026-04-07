@@ -1,6 +1,7 @@
 import LayoutShell from "@/components/LayoutShell";
 import PageHeader from "@/components/PageHeader";
 import TableCard from "@/components/TableCard";
+import { IconPlus } from "@tabler/icons-react";
 import { getVisiMisiTujuan, type VisiItem } from "@/db/queries/visi-misi-tujuan";
 import { IconEye, IconPencil } from "@tabler/icons-react";
 import VisiMisiTableClient, { TableRow } from "@/components/ui/VisiMisiTableClient";
@@ -52,7 +53,18 @@ export default async function VisiMisiPage() {
         title="Visi, Misi & Tujuan"
         description="Fondasi arah kebijakan dan landasan perencanaan strategis LAN RI."
       />
-      <TableCard title="Daftar Visi, Misi, dan Tujuan">
+      <TableCard
+        title="Daftar Visi, Misi, dan Tujuan"
+        toolbar={
+          <button
+            type="button"
+            className="bg-blue-700 hover:bg-blue-800 text-white font-semibold rounded-lg px-4 py-2 flex items-center gap-2 text-sm shadow"
+          >
+            <IconPlus size={16} />
+            Input Visi, Misi & Tujuan
+          </button>
+        }
+      >
         <VisiMisiTableClient rows={rows} errorMessage={errorMessage} />
       </TableCard>
     </LayoutShell>

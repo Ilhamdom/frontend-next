@@ -1,4 +1,5 @@
-import React from "react";
+
+import { IconPlus } from "@tabler/icons-react";
 
 interface PrimaryButtonProps {
   label: string;
@@ -8,12 +9,11 @@ interface PrimaryButtonProps {
 export default function PrimaryButton({ label, className = "" }: PrimaryButtonProps) {
   return (
     <button
-      className={`flex items-center justify-between gap-3 bg-[#0B1F3A] hover:bg-[#14386b] text-white rounded-xl px-6 py-3 font-semibold transition-colors duration-150 focus:outline-none ${className}`}
+      className={`flex items-center gap-2 bg-[#0B1F3A] hover:bg-[#14386b] text-white rounded-xl px-3 py-2 text-sm font-semibold transition-colors duration-150 focus:outline-none ${className}`}
       type="button"
     >
+      <IconPlus size={18} stroke={2} />
       <span>{label}</span>
-      {/* Icon panah kanan */}
-      <span className="text-xl leading-none">→</span>
     </button>
   );
 }
