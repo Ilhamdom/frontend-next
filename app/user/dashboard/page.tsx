@@ -1,15 +1,14 @@
 
-import UserLayout from "../components/UserLayout";
 import ExecutiveInfoCards from "../../../src/components/ExecutiveInfoCards";
+import DashboardKinerjaAnggaran from "../../../src/components/dashboard/DashboardKinerjaAnggaran";
 import SummaryCardsRow from "../../../src/components/SummaryCardsRow";
-import UnitProgressTable from "../../../src/components/UnitProgressTable";
+import UnifiedOverviewCard from "../../../src/components/dashboard/UnifiedOverviewCard";
 import PerformanceTrendCard from "../../../src/components/PerformanceTrendCard";
-import RecentActivityCard from "../../../src/components/RecentActivityCard";
+import RecentLaporanCard from "../../../src/components/dashboard/RecentLaporanCard";
 
 export default function UserDashboardPage() {
   return (
-    <UserLayout>
-      <div className="min-h-screen bg-[#f6f8fa] px-8 py-10">
+    <div className="flex flex-col w-full">
         {/* Header */}
         <div className="max-w-screen-xl mx-auto mb-10">
           <h1 className="text-3xl font-extrabold text-blue-900 tracking-tight">Dashboard Unit Kerja</h1>
@@ -26,13 +25,17 @@ export default function UserDashboardPage() {
               <PerformanceTrendCard role="user" />
             </div>
             <div>
-              <RecentActivityCard role="user" />
+              <RecentLaporanCard role="user" />
             </div>
           </div>
-          {/* Table Section */}
-          <UnitProgressTable role="user" />
+          {/* Master Overview Section */}
+          <UnifiedOverviewCard role="user" />
+
+          {/* Fitur Anggaran (Dipindah ke bawah) */}
+          <div className="mt-12 w-full">
+             <DashboardKinerjaAnggaran role="user" />
+          </div>
         </div>
-      </div>
-    </UserLayout>
+    </div>
   );
 }

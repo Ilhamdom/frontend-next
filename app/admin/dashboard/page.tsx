@@ -1,18 +1,16 @@
-"use client";
 import React from "react";
-import AdminLayoutShell from "../../../src/components/admin/AdminLayoutShell";
+import DashboardKinerjaAnggaran from "../../../src/components/dashboard/DashboardKinerjaAnggaran";
 import ExecutiveInfoCards from "../../../src/components/ExecutiveInfoCards";
 import SummaryCardsRow from "../../../src/components/SummaryCardsRow";
-import UnitProgressTable from "../../../src/components/UnitProgressTable";
+import UnifiedOverviewCard from "../../../src/components/dashboard/UnifiedOverviewCard";
 import PerformanceTrendCard from "../../../src/components/PerformanceTrendCard";
-import RecentActivityCard from "../../../src/components/RecentActivityCard";
+import RecentLaporanCard from "../../../src/components/dashboard/RecentLaporanCard";
 
 
 export default function AdminDashboardPage() {
   return (
-    <AdminLayoutShell>
-      <div className="min-h-screen bg-[#f6f8fa] px-8 py-10">
-        {/* Header */}
+    <div className="flex flex-col w-full">
+        {/* Header Eksekutif */}
         <div className="max-w-screen-xl mx-auto mb-10">
           <h1 className="text-3xl font-extrabold text-blue-900 tracking-tight">Dashboard Eksekutif</h1>
           <p className="text-gray-500 text-base mt-2">Ringkasan integrasi perencanaan dan capaian kinerja LAN RI Tahun 2026.</p>
@@ -28,13 +26,17 @@ export default function AdminDashboardPage() {
               <PerformanceTrendCard role="admin" />
             </div>
             <div>
-              <RecentActivityCard role="admin" />
+              <RecentLaporanCard role="admin" />
             </div>
           </div>
-          {/* Table Section */}
-          <UnitProgressTable role="admin" />
+          {/* Master Overview Section */}
+          <UnifiedOverviewCard role="admin" />
+
+          {/* Fitur Anggaran (Dipindah ke bawah) */}
+          <div className="mt-12 w-full">
+             <DashboardKinerjaAnggaran role="admin" />
+          </div>
         </div>
-      </div>
-    </AdminLayoutShell>
+    </div>
   );
 }

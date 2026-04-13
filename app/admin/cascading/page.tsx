@@ -1,5 +1,4 @@
 "use client";
-import AdminLayoutShell from "../../../src/components/admin/AdminLayoutShell";
 import AdminPageHeader from "../../../src/components/admin/AdminPageHeader";
 import CascadingSetupModal from "../../../src/components/admin/CascadingSetupModal";
 import React, { useState } from "react";
@@ -9,7 +8,7 @@ export default function AdminCascadingPage() {
   const handleSetup = () => setModalOpen(true);
 
   return (
-    <AdminLayoutShell>
+    <div className="flex flex-col w-full">
       <AdminPageHeader
         title="Cascading Kinerja"
         description="Peta penurunan (alignment) sasaran dari tingkat organisasi hingga individu."
@@ -58,6 +57,6 @@ export default function AdminCascadingPage() {
         </div>
       </div>
       <CascadingSetupModal open={modalOpen} onClose={() => setModalOpen(false)} />
-    </AdminLayoutShell>
+    </div>
   );
 }

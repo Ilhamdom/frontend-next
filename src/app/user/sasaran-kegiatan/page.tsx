@@ -1,13 +1,13 @@
 "use client";
-import UserLayoutShell from "../../../components/user/UserLayoutShell";
-import UserPageHeader from "../../../components/user/UserPageHeader";
-import UserTableCard from "../../../components/user/UserTableCard";
-import UserProgressBar from "../../../components/user/UserProgressBar";
-import UserStatusBadge from "../../../components/user/UserStatusBadge";
+import UserLayout from "../../components/UserLayout";
+import UserPageHeader from "../../components/user/UserPageHeader";
+import UserTableCard from "../../components/user/UserTableCard";
+import UserProgressBar from "../../components/user/UserProgressBar";
+import UserStatusBadge from "../../components/user/UserStatusBadge";
 
 export default function UserSasaranKegiatanPage() {
   return (
-    <UserLayoutShell>
+    <UserLayout>
       <UserPageHeader
         title="Sasaran Kegiatan (SK)"
         description="Daftar rinci kegiatan operasional (Level Administrator/Pengawas)."
@@ -55,6 +55,6 @@ export default function UserSasaranKegiatanPage() {
           </tbody>
         </table>
       </UserTableCard>
-    </UserLayoutShell>
+    </UserLayout>
   );
 }

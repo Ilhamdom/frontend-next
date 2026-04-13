@@ -1,11 +1,10 @@
 "use client";
-import UserLayout from "../components/UserLayout";
 import UserPageHeader from "../../components/user/UserPageHeader";
 import UserInfoCard from "../../components/user/UserInfoCard";
 
 export default function UserVisiMisiTujuanPage() {
   return (
-    <UserLayout>
+    <div className="flex flex-col w-full">
       <UserPageHeader
         title="Visi, Misi & Tujuan"
         description="Fondasi arah kebijakan dan landasan perencanaan strategis LAN RI."
@@ -47,6 +46,6 @@ export default function UserVisiMisiTujuanPage() {
           </table>
         </UserInfoCard>
       </div>
-    </UserLayout>
+    </div>
   );
 }

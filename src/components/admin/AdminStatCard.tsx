@@ -4,6 +4,7 @@ interface AdminStatCardProps {
   subtitle?: string;
   badgeText?: string;
   variant?: "default" | "blue" | "green" | "orange";
+  icon?: React.ReactNode;
 }
 
 const variantStyles = {
@@ -13,7 +14,7 @@ const variantStyles = {
   orange: "border-orange-500",
 };
 
-export default function AdminStatCard({ title, value, subtitle, badgeText, variant = "default" }: AdminStatCardProps) {
+export default function AdminStatCard({ title, value, subtitle, badgeText, variant = "default", icon }: AdminStatCardProps) {
   return (
     <div className={`relative bg-white rounded-2xl border border-gray-200 p-6 min-w-[180px] ${variantStyles[variant]}`.trim()}>
       {/* Badge kanan atas */}
@@ -24,10 +25,12 @@ export default function AdminStatCard({ title, value, subtitle, badgeText, varia
       )}
       {/* Value dan icon */}
       <div className="flex items-center gap-3 mb-2">
-        {/* Placeholder icon area */}
-        <div className="w-8 h-8 rounded-lg bg-blue-50 flex items-center justify-center text-blue-800 font-bold text-lg">
-          {/* Bisa diisi icon */}
-        </div>
+        {/* Render icon area */}
+        {icon && (
+          <div className="w-8 h-8 rounded-lg bg-blue-50 flex items-center justify-center text-blue-800 font-bold text-lg">
+            {icon}
+          </div>
+        )}
         <span className="text-3xl font-bold text-[#0B1F3A]">{value}</span>
       </div>
       <div className="text-xs font-semibold text-gray-400 uppercase mb-1">{title}</div>

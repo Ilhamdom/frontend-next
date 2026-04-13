@@ -1,5 +1,5 @@
 "use client";
-import UserLayout from "../components/UserLayout";
+import Link from "next/link";
 import UserPageHeader from "../../components/user/UserPageHeader";
 import UserTableCard from "../../components/user/UserTableCard";
 import UserProgressBar from "../../components/user/UserProgressBar";
@@ -7,12 +7,12 @@ import UserStatusBadge from "../../components/user/UserStatusBadge";
 
 export default function UserSasaranKegiatanPage() {
   return (
-    <UserLayout>
+    <div className="flex flex-col w-full">
       <UserPageHeader
         title="Sasaran Kegiatan (SK)"
         description="Daftar rinci kegiatan operasional (Level Administrator/Pengawas)."
         action={
-          <button className="bg-emerald-600 text-white px-4 py-2 rounded-lg font-semibold text-sm hover:bg-emerald-700">Lapor Realisasi</button>
+          <Link href="/user/laporan-realisasi" className="bg-emerald-600 text-white px-4 py-2 rounded-lg font-semibold text-sm hover:bg-emerald-700 inline-flex items-center justify-center">Lapor Realisasi</Link>
         }
       />
       <UserTableCard
@@ -55,6 +55,6 @@ export default function UserSasaranKegiatanPage() {
           </tbody>
         </table>
       </UserTableCard>
-    </UserLayout>
+    </div>
   );
 }

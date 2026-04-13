@@ -1,8 +1,26 @@
-export default function UserTopbar() {
+interface UserTopbarProps {
+  onToggleSidebar?: () => void;
+}
+
+export default function UserTopbar({ onToggleSidebar }: UserTopbarProps) {
   return (
     <header className="h-[72px] bg-white border-b border-gray-200 flex items-center px-8 justify-between">
       {/* Kiri: Search */}
       <div className="flex items-center gap-4 flex-1 max-w-[420px]">
+        {/* Hamburger */}
+        {onToggleSidebar && (
+          <button
+            className="p-2 rounded-md hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-800"
+            aria-label="Toggle sidebar"
+            onClick={onToggleSidebar}
+          >
+            <svg width="24" height="24" fill="none" viewBox="0 0 24 24">
+              <rect y="5" width="24" height="2.5" rx="1.25" fill="#0a1834" />
+              <rect y="11" width="24" height="2.5" rx="1.25" fill="#0a1834" />
+              <rect y="17" width="24" height="2.5" rx="1.25" fill="#0a1834" />
+            </svg>
+          </button>
+        )}
         <div className="relative w-full">
           <span className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400">
             <svg width="18" height="18" fill="none" viewBox="0 0 18 18"><circle cx="8" cy="8" r="6.25" stroke="currentColor" strokeWidth="1.5"/><path d="M15 15l-3.5-3.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/></svg>

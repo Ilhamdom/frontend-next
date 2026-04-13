@@ -1,5 +1,4 @@
 "use client";
-import UserLayout from "../components/UserLayout";
 import UserPageHeader from "../../components/user/UserPageHeader";
 import UserTableCard from "../../components/user/UserTableCard";
 import UserStatusBadge from "../../components/user/UserStatusBadge";
@@ -41,7 +40,7 @@ const data = [
 
 export default function UserSasaranStrategisPage() {
   return (
-    <UserLayout>
+    <div className="flex flex-col w-full">
       <UserPageHeader
         title="Sasaran Strategis (SS)"
         description="Peta jalan strategis dan indikator kinerja makro (Level JPT Utama)."
@@ -74,6 +73,6 @@ export default function UserSasaranStrategisPage() {
           </tbody>
         </table>
       </UserTableCard>
-    </UserLayout>
+    </div>
   );
 }

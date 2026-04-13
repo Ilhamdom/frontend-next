@@ -10,12 +10,15 @@
   },
   "dependencies": {
     "@idds/js": "^1.6.4",
+    "@supabase/supabase-js": "^2.100.0",
     "@tabler/icons-react": "^3.40.0",
     "@tailwindcss/vite": "^4.2.1",
+    "lucide-react": "^1.8.0",
     "next": "16.1.7",
     "nodemailer": "^8.0.2",
     "react": "19.2.3",
-    "react-dom": "19.2.3"
+    "react-dom": "19.2.3",
+    "recharts": "^3.8.1"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",

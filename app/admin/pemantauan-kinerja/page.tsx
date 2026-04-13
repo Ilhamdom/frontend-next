@@ -1,11 +1,10 @@
-import AdminLayoutShell from "../../../src/components/admin/AdminLayoutShell";
 import AdminPageHeader from "../../../src/components/admin/AdminPageHeader";
 import AdminInfoCard from "../../../src/components/admin/AdminInfoCard";
 import React from "react";
 
 export default function AdminPemantauanKinerjaPage() {
   return (
-    <AdminLayoutShell>
+    <div className="flex flex-col w-full">
       <AdminPageHeader
         title="Pemantauan Kinerja"
         description="Dasbor analitik tren capaian kinerja dan peringatan dini (early warning)."
@@ -65,6 +64,6 @@ export default function AdminPemantauanKinerjaPage() {
           </ul>
         </AdminInfoCard>
       </div>
-    </AdminLayoutShell>
+    </div>
   );
 }

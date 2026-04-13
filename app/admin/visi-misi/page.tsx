@@ -1,20 +1,29 @@
-import AdminLayoutShell from "../../../src/components/admin/AdminLayoutShell";
+"use client";
 import AdminPageHeader from "../../../src/components/admin/AdminPageHeader";
 import AdminInfoCard from "../../../src/components/admin/AdminInfoCard";
+import { useSearch } from "../../../src/context/SearchContext";
+import { highlightText } from "../../../src/utils/textHighlight";
 
 export default function AdminVisiMisiPage() {
+  const { searchQuery } = useSearch();
+
   return (
-    <AdminLayoutShell>
+    <div className="flex flex-col w-full">
       <AdminPageHeader
         title="Visi, Misi & Tujuan"
         description="Fondasi arah kebijakan dan landasan perencanaan strategis LAN RI."
       />
       {/* Hero Card */}
-      <div className="mb-8">
-        <div className="bg-blue-800 rounded-2xl p-8 flex flex-col gap-2 shadow-md">
-          <span className="inline-block bg-yellow-400 text-blue-900 text-xs font-bold px-3 py-1 rounded-full mb-2 w-max">VISI LAN RI</span>
-          <div className="text-white text-xl md:text-2xl font-bold leading-snug">
-            Menjadi lembaga pembina yang unggul dalam mewujudkan birokrasi berkelas dunia untuk Indonesia Maju.
+      <div className="mb-8 overflow-hidden rounded-2xl shadow-md border border-gray-200 bg-white">
+        <div className="flex flex-col md:flex-row">
+          <div className="bg-blue-800 p-8 flex-1 flex flex-col justify-center">
+            <span className="inline-block bg-yellow-400 text-blue-900 text-xs font-bold px-3 py-1 rounded-full mb-3 w-max">VISI LAN RI</span>
+            <div className="text-white text-xl md:text-2xl font-bold leading-snug">
+              {highlightText("Menjadi lembaga pembina yang unggul dalam mewujudkan birokrasi berkelas dunia untuk Indonesia Maju.", searchQuery)}
+            </div>
+          </div>
+          <div className="md:w-2/5 h-48 md:h-auto overflow-hidden">
+             <img src="/images/gedung_lan.jpg" alt="Gedung LAN" className="w-full h-full object-cover grayscale-[20%] hover:grayscale-0 transition-all duration-500" />
           </div>
         </div>
       </div>
@@ -23,9 +32,9 @@ export default function AdminVisiMisiPage() {
         {/* Misi Organisasi */}
         <AdminInfoCard title="Misi Organisasi" accent="blue">
           <ol className="list-decimal list-inside space-y-2">
-            <li className="bg-gray-50 rounded-lg px-3 py-2">Meningkatkan kualitas SDM aparatur negara.</li>
-            <li className="bg-gray-50 rounded-lg px-3 py-2">Mengembangkan inovasi tata kelola pemerintahan.</li>
-            <li className="bg-gray-50 rounded-lg px-3 py-2">Memperkuat sistem pengawasan dan akuntabilitas.</li>
+            <li className="bg-gray-50 rounded-lg px-3 py-2">{highlightText("Meningkatkan kualitas SDM aparatur negara.", searchQuery)}</li>
+            <li className="bg-gray-50 rounded-lg px-3 py-2">{highlightText("Mengembangkan inovasi tata kelola pemerintahan.", searchQuery)}</li>
+            <li className="bg-gray-50 rounded-lg px-3 py-2">{highlightText("Memperkuat sistem pengawasan dan akuntabilitas.", searchQuery)}</li>
           </ol>
         </AdminInfoCard>
         {/* Tujuan Strategis */}
@@ -38,14 +47,14 @@ export default function AdminVisiMisiPage() {
               </tr>
             </thead>
             <tbody>
-              <tr><td className="font-semibold pr-4">T-01</td><td>Meningkatkan kualitas pelayanan publik</td></tr>
-              <tr><td className="font-semibold pr-4">T-02</td><td>Meningkatkan profesionalisme ASN</td></tr>
-              <tr><td className="font-semibold pr-4">T-03</td><td>Meningkatkan inovasi kelembagaan</td></tr>
-              <tr><td className="font-semibold pr-4">T-04</td><td>Meningkatkan akuntabilitas kinerja</td></tr>
+              <tr><td className="font-semibold pr-4">{highlightText("T-01", searchQuery)}</td><td>{highlightText("Meningkatkan kualitas pelayanan publik", searchQuery)}</td></tr>
+              <tr><td className="font-semibold pr-4">{highlightText("T-02", searchQuery)}</td><td>{highlightText("Meningkatkan profesionalisme ASN", searchQuery)}</td></tr>
+              <tr><td className="font-semibold pr-4">{highlightText("T-03", searchQuery)}</td><td>{highlightText("Meningkatkan inovasi kelembagaan", searchQuery)}</td></tr>
+              <tr><td className="font-semibold pr-4">{highlightText("T-04", searchQuery)}</td><td>{highlightText("Meningkatkan akuntabilitas kinerja", searchQuery)}</td></tr>
             </tbody>
           </table>
         </AdminInfoCard>
       </div>
-    </AdminLayoutShell>
+    </div>
   );
 }

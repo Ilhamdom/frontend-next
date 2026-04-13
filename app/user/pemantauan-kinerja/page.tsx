@@ -1,11 +1,10 @@
 "use client";
-import UserLayout from "../components/UserLayout";
 import UserPageHeader from "../../components/user/UserPageHeader";
 import UserInfoCard from "../../components/user/UserInfoCard";
 
 export default function UserPemantauanKinerjaPage() {
   return (
-    <UserLayout>
+    <div className="flex flex-col w-full">
       <UserPageHeader
         title="Pemantauan Kinerja"
         description="Dasbor analitik tren capaian kinerja dan peringatan dini (early warning)."
@@ -50,6 +49,6 @@ export default function UserPemantauanKinerjaPage() {
           </div>
         </div>
       </UserInfoCard>
-    </UserLayout>
+    </div>
   );
 }

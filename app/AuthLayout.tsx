@@ -13,7 +13,7 @@ export default function AuthLayout({ children }: { children: React.ReactNode }) 
             <div className="mb-4 text-center">
               <div className="text-2xl font-bold text-blue-900 mb-1">LAN RI</div>
               <div className="text-sm text-gray-500 mb-4">SI-REVA 2026</div>
-              <Image src="/images/hero-dashboard.png" alt="Dashboard" width={220} height={120} className="rounded-xl mx-auto" />
+              <Image src="/banner.png" alt="Dashboard" width={220} height={120} className="rounded-xl mx-auto" />
             </div>
           </div>
           {/* Right */}

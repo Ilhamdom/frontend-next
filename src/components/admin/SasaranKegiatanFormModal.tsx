@@ -1,11 +1,17 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import AdminModalShell from "./AdminModalShell";
+import { Input } from "../ui/Input";
+import { Select } from "../ui/Select";
+import { Textarea } from "../ui/Textarea";
+import { Button } from "../ui/Button";
 
 interface SasaranKegiatanFormModalProps {
   open: boolean;
-  mode?: "create" | "edit";
+  mode?: "create" | "edit" | "view";
+  initialData?: any;
   onClose: () => void;
+  onSave: (data: any) => void;
 }
 
 const SP_OPTIONS = [
@@ -21,7 +27,13 @@ const STATUS_OPTIONS = [
   { value: "BERJALAN", label: "BERJALAN" },
 ];
 
-export default function SasaranKegiatanFormModal({ open, mode = "create", onClose }: SasaranKegiatanFormModalProps) {
+export default function SasaranKegiatanFormModal({
+  open,
+  mode = "create",
+  initialData,
+  onClose,
+  onSave,
+}: SasaranKegiatanFormModalProps) {
   const [nama, setNama] = useState("");
   const [sp, setSp] = useState(SP_OPTIONS[0].value);
   const [unit, setUnit] = useState("");
@@ -30,117 +42,133 @@ export default function SasaranKegiatanFormModal({ open, mode = "create", onClos
   const [status, setStatus] = useState(STATUS_OPTIONS[0].value);
   const [keterangan, setKeterangan] = useState("");
 
+  useEffect(() => {
+    if (open) {
+      if ((mode === "edit" || mode === "view") && initialData) {
+        setNama(initialData.nama || "");
+        setSp(initialData.sp || SP_OPTIONS[0].value);
+        setUnit(initialData.unit || "");
+        setTimeline(initialData.timeline || "");
+        setProgress(initialData.progress?.toString() || "");
+        setStatus(initialData.status || STATUS_OPTIONS[0].value);
+        setKeterangan(initialData.keterangan || "");
+      } else {
+        setNama("");
+        setSp(SP_OPTIONS[0].value);
+        setUnit("");
+        setTimeline("");
+        setProgress("");
+        setStatus(STATUS_OPTIONS[0].value);
+        setKeterangan("");
+      }
+    }
+  }, [open, mode, initialData]);
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // TODO: handle submit logic
+    onSave({
+      nama,
+      sp,
+      unit,
+      timeline,
+      progress: parseInt(progress) || 0,
+      status,
+      keterangan,
+    });
+    onClose();
   };
 
   return (
     <AdminModalShell
       open={open}
       onClose={onClose}
-      title={mode === "edit" ? "Edit Sasaran Kegiatan" : "Tambah Sasaran Kegiatan"}
+      title={mode === "view" ? "Lihat Sasaran Kegiatan" : mode === "edit" ? "Edit Sasaran Kegiatan" : "Tambah Sasaran Kegiatan"}
     >
-      <form onSubmit={handleSubmit} className="w-full max-w-2xl">
-        <div className="mb-6">
-          <h2 className="text-xl font-bold text-blue-900">
-            {mode === "edit" ? "Edit Sasaran Kegiatan" : "Tambah Sasaran Kegiatan"}
-          </h2>
-        </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <form onSubmit={handleSubmit} className="w-full max-w-2xl mt-4">
+        <div className="grid grid-cols-1 gap-4 md:grid-cols-2 space-y-2 border-b border-gray-100 pb-6">
           <div className="md:col-span-2">
-            <label className="block text-sm font-medium text-blue-900 mb-1">Nama Kegiatan</label>
-            <input
-              type="text"
-              className="w-full border border-gray-300 rounded-lg px-3 py-2 text-base focus:outline-none focus:ring-2 focus:ring-blue-400"
+            <Input
+              label="Nama Kegiatan"
               value={nama}
-              onChange={e => setNama(e.target.value)}
+              onChange={(e) => setNama(e.target.value)}
+              disabled={mode === "view"}
               required
             />
           </div>
-          <div>
-            <label className="block text-sm font-medium text-blue-900 mb-1">Turunan dari Sasaran Program</label>
-            <select
-              className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400"
-              value={sp}
-              onChange={e => setSp(e.target.value)}
-              required
-            >
-              {SP_OPTIONS.map(opt => (
-                <option key={opt.value} value={opt.value}>{opt.label}</option>
-              ))}
-            </select>
-          </div>
-          <div>
-            <label className="block text-sm font-medium text-blue-900 mb-1">Unit Kerja</label>
-            <input
-              type="text"
-              className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400"
-              value={unit}
-              onChange={e => setUnit(e.target.value)}
-              required
-            />
-          </div>
-          <div>
-            <label className="block text-sm font-medium text-blue-900 mb-1">Timeline Pelaksanaan</label>
-            <input
-              type="text"
-              className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400"
-              value={timeline}
-              onChange={e => setTimeline(e.target.value)}
-              placeholder="Jan - Feb 2026"
-              required
-            />
-          </div>
-          <div>
-            <label className="block text-sm font-medium text-blue-900 mb-1">Progres Kegiatan (%)</label>
-            <input
-              type="number"
-              className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400"
-              value={progress}
-              onChange={e => setProgress(e.target.value)}
-              min={0}
-              max={100}
-              required
-            />
-          </div>
-          <div>
-            <label className="block text-sm font-medium text-blue-900 mb-1">Status</label>
-            <select
-              className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400"
-              value={status}
-              onChange={e => setStatus(e.target.value)}
-              required
-            >
-              {STATUS_OPTIONS.map(opt => (
-                <option key={opt.value} value={opt.value}>{opt.label}</option>
-              ))}
-            </select>
-          </div>
+
+          <Select
+            label="Turunan dari Sasaran Program"
+            options={SP_OPTIONS}
+            value={sp}
+            onChange={(e) => setSp(e.target.value)}
+            disabled={mode === "view"}
+            required
+          />
+
+          <Input
+            label="Unit Kerja"
+            value={unit}
+            onChange={(e) => setUnit(e.target.value)}
+            disabled={mode === "view"}
+            required
+          />
+
+          <Input
+            label="Timeline Pelaksanaan"
+            value={timeline}
+            onChange={(e) => setTimeline(e.target.value)}
+            placeholder="Jan - Feb 2026"
+            disabled={mode === "view"}
+            required
+          />
+
+          <Input
+            type="number"
+            label="Progres Kegiatan (%)"
+            value={progress}
+            onChange={(e) => setProgress(e.target.value)}
+            min={0}
+            max={100}
+            disabled={mode === "view"}
+            required
+          />
+
+          <Select
+            label="Status"
+            options={STATUS_OPTIONS}
+            value={status}
+            onChange={(e) => setStatus(e.target.value)}
+            disabled={mode === "view"}
+            required
+          />
+
           <div className="md:col-span-2">
-            <label className="block text-sm font-medium text-blue-900 mb-1">Keterangan Singkat</label>
-            <textarea
-              className="w-full border border-gray-300 rounded-lg px-3 py-2 min-h-[60px] focus:outline-none focus:ring-2 focus:ring-blue-400"
+            <Textarea
+              label="Keterangan Singkat"
               value={keterangan}
-              onChange={e => setKeterangan(e.target.value)}
+              onChange={(e) => setKeterangan(e.target.value)}
               required
+              disabled={mode === "view"}
+              rows={3}
             />
           </div>
         </div>
-        <div className="flex justify-end gap-2 mt-8">
-          <button
+
+        <div className="mt-6 flex justify-end gap-3">
+          <Button
             type="button"
-            className="px-4 py-2 rounded-lg border border-gray-300 text-gray-700 font-semibold hover:bg-gray-100"
+            variant="outline"
             onClick={onClose}
           >
-            Batal
-          </button>
-          <button
-            type="submit"
-            className="px-4 py-2 rounded-lg bg-blue-800 text-white font-semibold hover:bg-blue-900"
-          >
-            Simpan SK
-          </button>
+            {mode === "view" ? "Tutup" : "Batal"}
+          </Button>
+          {mode !== "view" && (
+            <Button
+              type="submit"
+            >
+              Simpan SK
+            </Button>
+          )}
         </div>
       </form>
     </AdminModalShell>

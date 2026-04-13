@@ -1,17 +1,17 @@
 "use client";
 import React, { useState } from "react";
-import UserSidebar from "../../../src/components/user/UserSidebar";
-import UserTopbar from "../../../src/components/user/UserTopbar";
+import UserSidebar from "../../components/user/UserSidebar";
+import UserTopbar from "../../components/user/UserTopbar";
 
 export default function UserLayout({ children }: { children: React.ReactNode }) {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   return (
-    <div className="min-h-screen bg-[#eef2f6]">
-      <div className="flex min-h-screen">
+    <div className="h-screen bg-[#f8fafc] overflow-hidden">
+      <div className="flex h-full">
         <UserSidebar isOpen={isSidebarOpen} />
-        <div className="flex min-w-0 flex-1 flex-col">
+        <div className="flex flex-1 flex-col min-w-0 h-full overflow-hidden relative">
           <UserTopbar onToggleSidebar={() => setIsSidebarOpen(prev => !prev)} />
-          <main className="min-w-0 flex-1 p-6 lg:p-8">
+          <main className="flex-1 overflow-y-auto p-6 lg:p-8 w-full relative">
             {children}
           </main>
         </div>

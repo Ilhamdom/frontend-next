@@ -1,11 +1,17 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import AdminModalShell from "./AdminModalShell";
+import { Input } from "../ui/Input";
+import { Select } from "../ui/Select";
+import { Textarea } from "../ui/Textarea";
+import { Button } from "../ui/Button";
 
 interface SasaranProgramFormModalProps {
   open: boolean;
-  mode?: "create" | "edit";
+  mode?: "create" | "edit" | "view";
+  initialData?: any;
   onClose: () => void;
+  onSave: (data: any) => void;
 }
 
 const SS_OPTIONS = [
@@ -15,7 +21,7 @@ const SS_OPTIONS = [
   { value: "SS-04", label: "SS-04" },
 ];
 
-export default function SasaranProgramFormModal({ open, mode = "create", onClose }: SasaranProgramFormModalProps) {
+export default function SasaranProgramFormModal({ open, mode = "create", initialData, onClose, onSave }: SasaranProgramFormModalProps) {
   const [kode, setKode] = useState("");
   const [ss, setSs] = useState(SS_OPTIONS[0].value);
   const [nama, setNama] = useState("");
@@ -24,113 +30,121 @@ export default function SasaranProgramFormModal({ open, mode = "create", onClose
   const [target, setTarget] = useState("");
   const [progress, setProgress] = useState("");
 
+  useEffect(() => {
+    if (open) {
+      if ((mode === "edit" || mode === "view") && initialData) {
+        setKode(initialData.kode || "");
+        setSs(initialData.ss || SS_OPTIONS[0].value);
+        setNama(initialData.nama || "");
+        setPic(initialData.pic || "");
+        setIndikator(initialData.indikator || "");
+        setTarget(initialData.target || "");
+        setProgress(initialData.progress?.toString() || "");
+      } else {
+        setKode("");
+        setSs(SS_OPTIONS[0].value);
+        setNama("");
+        setPic("");
+        setIndikator("");
+        setTarget("");
+        setProgress("");
+      }
+    }
+  }, [open, mode, initialData]);
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // TODO: handle submit logic
+    onSave({
+      kode,
+      ss,
+      nama,
+      pic,
+      indikator,
+      target,
+      progress: parseInt(progress) || 0
+    });
+    onClose();
   };
 
   return (
     <AdminModalShell
       open={open}
       onClose={onClose}
-      title={mode === "edit" ? "Edit Sasaran Program" : "Tambah Sasaran Program"}
+      title={mode === "view" ? "Lihat Sasaran Program" : mode === "edit" ? "Edit Sasaran Program" : "Tambah Sasaran Program"}
     >
-      <form onSubmit={handleSubmit} className="w-full max-w-2xl">
-        <div className="mb-6">
-          <h2 className="text-xl font-bold text-blue-900">
-            {mode === "edit" ? "Edit Sasaran Program" : "Tambah Sasaran Program"}
-          </h2>
-        </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">Kode SP</label>
-            <input
-              type="text"
-              className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400"
-              value={kode}
-              onChange={e => setKode(e.target.value)}
-              required
-            />
-          </div>
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">Terkait Sasaran Strategis</label>
-            <select
-              className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400"
-              value={ss}
-              onChange={e => setSs(e.target.value)}
-              required
-            >
-              {SS_OPTIONS.map(opt => (
-                <option key={opt.value} value={opt.value}>{opt.label}</option>
-              ))}
-            </select>
-          </div>
+      <form onSubmit={handleSubmit} className="w-full max-w-2xl space-y-6 mt-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 border-b border-gray-100 pb-6">
+          <Input
+            label="Kode SP"
+            value={kode}
+            onChange={e => setKode(e.target.value)}
+            disabled={mode === "view"}
+            required
+          />
+          <Select
+            label="Terkait Sasaran Strategis"
+            options={SS_OPTIONS}
+            value={ss}
+            onChange={e => setSs(e.target.value)}
+            disabled={mode === "view"}
+            required
+          />
           <div className="md:col-span-2">
-            <label className="block text-sm font-medium text-gray-700 mb-1">Nama Sasaran Program</label>
-            <textarea
-              className="w-full border border-gray-300 rounded-lg px-3 py-2 min-h-[60px] focus:outline-none focus:ring-2 focus:ring-blue-400"
+            <Textarea
+              label="Nama Sasaran Program"
               value={nama}
               onChange={e => setNama(e.target.value)}
+              disabled={mode === "view"}
               required
             />
           </div>
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">Unit Kerja (PIC)</label>
-            <input
-              type="text"
-              className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400"
-              value={pic}
-              onChange={e => setPic(e.target.value)}
-              required
-            />
-          </div>
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">Indikator Kinerja Program</label>
-            <input
-              type="text"
-              className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400"
-              value={indikator}
-              onChange={e => setIndikator(e.target.value)}
-              required
-            />
-          </div>
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">Target Program</label>
-            <input
-              type="text"
-              className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400"
-              value={target}
-              onChange={e => setTarget(e.target.value)}
-              required
-            />
-          </div>
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">Realisasi / Progress</label>
-            <input
-              type="number"
-              className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400"
-              value={progress}
-              onChange={e => setProgress(e.target.value)}
-              min={0}
-              max={100}
-              required
-            />
-          </div>
+          <Input
+            label="Unit Kerja (PIC)"
+            value={pic}
+            onChange={e => setPic(e.target.value)}
+            disabled={mode === "view"}
+            required
+          />
+          <Input
+            label="Indikator Kinerja Program"
+            value={indikator}
+            onChange={e => setIndikator(e.target.value)}
+            disabled={mode === "view"}
+            required
+          />
+          <Input
+            label="Target Program"
+            value={target}
+            onChange={e => setTarget(e.target.value)}
+            disabled={mode === "view"}
+            required
+          />
+          <Input
+            type="number"
+            label="Realisasi / Progress"
+            value={progress}
+            onChange={e => setProgress(e.target.value)}
+            min={0}
+            max={100}
+            disabled={mode === "view"}
+            required
+          />
         </div>
-        <div className="flex justify-end gap-2 mt-8">
-          <button
+        <div className="flex justify-end gap-3 pt-2">
+          <Button
             type="button"
-            className="px-4 py-2 rounded-lg border border-gray-300 text-gray-700 font-semibold hover:bg-gray-100"
+            variant="outline"
             onClick={onClose}
           >
-            Batal
-          </button>
-          <button
-            type="submit"
-            className="px-4 py-2 rounded-lg bg-blue-800 text-white font-semibold hover:bg-blue-900"
-          >
-            Simpan SP
-          </button>
+            {mode === "view" ? "Tutup" : "Batal"}
+          </Button>
+          {mode !== "view" && (
+            <Button
+              type="submit"
+            >
+              Simpan SP
+            </Button>
+          )}
         </div>
       </form>
     </AdminModalShell>

@@ -2,20 +2,20 @@ interface AdminStatusBadgeProps {
   status: string;
 }
 
-const statusMap: Record<string, { bg: string; text: string }> = {
-  TERCAPAI: { bg: "bg-green-100", text: "text-green-800" },
-  BERJALAN: { bg: "bg-blue-100", text: "text-blue-800" },
-  "PERLU ATENSI": { bg: "bg-pink-100", text: "text-pink-700" },
-  SELESAI: { bg: "bg-green-100", text: "text-green-800" },
-  "BELUM MULAI": { bg: "bg-gray-100", text: "text-gray-600" },
-  "HAMPIR SELESAI": { bg: "bg-blue-100", text: "text-blue-800" },
-  AKTIF: { bg: "bg-blue-100", text: "text-blue-800" },
+const statusMap: Record<string, string> = {
+  TERCAPAI: "bg-status-green/20 text-status-green",
+  BERJALAN: "bg-status-info/20 text-status-info",
+  "PERLU ATENSI": "bg-status-red/20 text-status-red",
+  SELESAI: "bg-status-green/20 text-status-green",
+  "BELUM MULAI": "bg-status-red/20 text-status-red",
+  "HAMPIR SELESAI": "bg-status-yellow/30 text-yellow-700",
+  AKTIF: "bg-status-info/20 text-status-info",
 };
 
 export default function AdminStatusBadge({ status }: AdminStatusBadgeProps) {
   const normalized = status.trim().toUpperCase();
-  const style = statusMap[normalized] || { bg: "bg-gray-100", text: "text-gray-600" };
+  const styleClass = statusMap[normalized] || "bg-gray-100 text-gray-600";
   return (
-    <span className={`inline-block rounded-md px-2 py-0.5 text-xs font-semibold ${style.bg} ${style.text}`}>{status}</span>
+    <span className={`inline-block rounded-md px-2 py-0.5 text-xs font-bold ${styleClass}`}>{status}</span>
   );
 }

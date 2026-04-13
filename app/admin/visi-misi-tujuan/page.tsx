@@ -28,9 +28,9 @@ const goals = [
   },
 ];
 
+export default function AdminVisiMisiTujuanPage() {
   return (
-    <AdminLayoutShell>
-      <div className="min-h-screen bg-[#f6f8fa] px-6 md:px-10 py-10">
+    <div className="flex flex-col w-full">
         {/* Header */}
         <div className="max-w-screen-lg mx-auto mb-10">
           <h1 className="text-3xl font-extrabold text-blue-900 mb-1">Visi, Misi & Tujuan</h1>
@@ -102,7 +102,6 @@ const goals = [
             </div>
           </div>
         </div>
-      </div>
-    </AdminLayoutShell>
+    </div>
   );
 }

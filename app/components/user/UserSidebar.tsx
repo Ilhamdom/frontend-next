@@ -1,64 +1,69 @@
 "use client";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { IconDashboard, IconTarget, IconChartBar, IconListCheck, IconChartPie, IconDeviceAnalytics, IconNetwork, IconReport } from "@tabler/icons-react";
 
 const menuItems = [
   {
     label: "Dashboard",
     href: "/user/dashboard",
-    icon: (
-      <svg width="20" height="20" fill="none" viewBox="0 0 20 20"><rect x="3" y="3" width="14" height="14" rx="3" stroke="currentColor" strokeWidth="1.5"/></svg>
-    ),
+    icon: <IconDashboard size={20} stroke={1.5} />,
   },
   {
     label: "Visi, Misi & Tujuan",
     href: "/user/visi-misi",
-    icon: (
-      <svg width="20" height="20" fill="none" viewBox="0 0 20 20"><path d="M10 4v12M4 10h12" stroke="currentColor" strokeWidth="1.5"/></svg>
-    ),
+    icon: <IconTarget size={20} stroke={1.5} />,
   },
   {
     label: "Sasaran Strategis",
     href: "/user/sasaran-strategis",
-    icon: (
-      <svg width="20" height="20" fill="none" viewBox="0 0 20 20"><circle cx="10" cy="10" r="6" stroke="currentColor" strokeWidth="1.5"/></svg>
-    ),
+    icon: <IconDeviceAnalytics size={20} stroke={1.5} />,
   },
   {
     label: "Sasaran Program",
     href: "/user/sasaran-program",
-    icon: (
-      <svg width="20" height="20" fill="none" viewBox="0 0 20 20"><rect x="5" y="5" width="10" height="10" rx="2" stroke="currentColor" strokeWidth="1.5"/></svg>
-    ),
+    icon: <IconListCheck size={20} stroke={1.5} />,
   },
   {
     label: "Sasaran Kegiatan",
     href: "/user/sasaran-kegiatan",
-    icon: (
-      <svg width="20" height="20" fill="none" viewBox="0 0 20 20"><path d="M5 10h10M10 5v10" stroke="currentColor" strokeWidth="1.5"/></svg>
-    ),
+    icon: <IconChartPie size={20} stroke={1.5} />,
   },
   {
     label: "Pemantauan Kinerja",
     href: "/user/pemantauan-kinerja",
-    icon: (
-      <svg width="20" height="20" fill="none" viewBox="0 0 20 20"><rect x="4" y="8" width="3" height="8" rx="1.5" fill="currentColor"/><rect x="8.5" y="4" width="3" height="12" rx="1.5" fill="currentColor"/><rect x="13" y="11" width="3" height="5" rx="1.5" fill="currentColor"/></svg>
-    ),
+    icon: <IconChartBar size={20} stroke={1.5} />,
   },
   {
     label: "Cascading",
     href: "/user/cascading",
-    icon: (
-      <svg width="20" height="20" fill="none" viewBox="0 0 20 20"><circle cx="6" cy="6" r="2" fill="currentColor"/><circle cx="14" cy="10" r="2" fill="currentColor"/><circle cx="10" cy="16" r="2" fill="currentColor"/><path d="M7.5 7.5l4 1.5M12.5 12l-2 2" stroke="currentColor" strokeWidth="1.2"/></svg>
-    ),
+    icon: <IconNetwork size={20} stroke={1.5} />,
+  },
+  {
+    label: "Laporan Realisasi",
+    href: "/user/laporan-realisasi",
+    icon: <IconReport size={20} stroke={1.5} />,
   },
 ];
 
-export default function UserSidebar() {
+export default function UserSidebar({ isOpen = true }: { isOpen?: boolean }) {
   const pathname = usePathname();
   return (
-    <aside className="h-screen w-[220px] bg-[#0a1834] flex flex-col justify-between py-6 px-4">
+    <aside className={`h-full min-h-screen transition-all duration-300 ease-in-out bg-[#0a1834] flex flex-col justify-between py-6 shrink-0 overflow-hidden ${isOpen ? 'w-[220px] px-4' : 'w-[80px] px-2'}`}>
       <nav className="flex-1">
+        {/* Branding/Logo for User Sidebar */}
+        <div className={`flex flex-col items-center pb-6 mb-6 border-b border-blue-900/50 ${isOpen ? '' : 'px-0'}`}>
+          <div className="w-10 h-10 flex items-center justify-center mb-1">
+            <img src="/images/logo-lan.png" alt="Logo LAN" className="w-full h-full object-contain drop-shadow-md" />
+          </div>
+          {isOpen && (
+            <>
+              <div className="text-xl font-bold text-white tracking-wide">LAN RI</div>
+              <div className="text-[10px] font-semibold text-yellow-400 mt-1 tracking-widest whitespace-nowrap">SI-REVA USER</div>
+            </>
+          )}
+        </div>
+        
         <ul className="flex flex-col gap-2">
           {menuItems.map((item) => {
             const active = pathname === item.href;
@@ -66,10 +71,11 @@ export default function UserSidebar() {
               <li key={item.href}>
                 <Link
                   href={item.href}
-                  className={`flex items-center gap-3 px-4 py-2 rounded-lg font-semibold text-sm transition-colors ${active ? "bg-white text-blue-900 shadow" : "text-gray-200 hover:bg-blue-900/30"}`}
+                  className={`flex items-center gap-3 py-2 rounded-lg font-semibold text-sm transition-colors ${isOpen ? 'px-4' : 'px-0 justify-center'} ${active ? "bg-white text-blue-900 shadow" : "text-gray-200 hover:bg-blue-900/30"}`}
+                  title={!isOpen ? item.label : undefined}
                 >
-                  <span className="w-5 h-5 flex items-center justify-center">{item.icon}</span>
-                  {item.label}
+                  <span className="w-5 h-5 flex items-center justify-center shrink-0">{item.icon}</span>
+                  {isOpen && <span className="whitespace-nowrap">{item.label}</span>}
                 </Link>
               </li>
             );
@@ -77,8 +83,8 @@ export default function UserSidebar() {
         </ul>
       </nav>
       <div className="mt-8 flex flex-col items-center gap-2">
-        <div className="w-12 h-12 rounded-full bg-emerald-700 flex items-center justify-center text-white font-bold text-lg">SE</div>
-        <div className="text-xs text-gray-200 font-semibold">Staf Evaluator</div>
+        <div className="w-10 h-10 rounded-full bg-emerald-700 flex items-center justify-center text-white font-bold text-sm">SE</div>
+        {isOpen && <div className="text-xs text-gray-200 font-semibold whitespace-nowrap">Staf Evaluator</div>}
       </div>
     </aside>
   );

@@ -1,5 +1,6 @@
 "use client";
 import React from "react";
+import { IconTarget, IconListCheck, IconChartPie } from "@tabler/icons-react";
 
 interface SummaryCardsRowProps {
   role: "admin" | "user";
@@ -9,7 +10,7 @@ const summaryData = [
   {
     icon: (
       <div className="bg-gray-100 rounded-lg w-8 h-8 flex items-center justify-center">
-        <svg width="18" height="18" fill="none" viewBox="0 0 20 20"><circle cx="10" cy="10" r="8" stroke="#64748b" strokeWidth="2" /></svg>
+        <IconTarget size={20} stroke={2} className="text-slate-500" />
       </div>
     ),
     value: 4,
@@ -19,7 +20,7 @@ const summaryData = [
   {
     icon: (
       <div className="bg-gray-100 rounded-lg w-8 h-8 flex items-center justify-center">
-        <svg width="18" height="18" fill="none" viewBox="0 0 20 20"><rect x="4" y="4" width="12" height="12" stroke="#64748b" strokeWidth="2" /></svg>
+        <IconListCheck size={20} stroke={2} className="text-slate-500" />
       </div>
     ),
     value: 12,
@@ -29,7 +30,7 @@ const summaryData = [
   {
     icon: (
       <div className="bg-gray-100 rounded-lg w-8 h-8 flex items-center justify-center">
-        <svg width="18" height="18" fill="none" viewBox="0 0 20 20"><rect x="3" y="8" width="14" height="6" stroke="#64748b" strokeWidth="2" /></svg>
+        <IconChartPie size={20} stroke={2} className="text-slate-500" />
       </div>
     ),
     value: 45,
@@ -43,20 +44,20 @@ export default function SummaryCardsRow({ role }: SummaryCardsRowProps) {
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-10">
       {/* 3 summary cards */}
       {summaryData.map((item, idx) => (
-        <div key={item.label} className="bg-white rounded-2xl border border-gray-200 shadow-sm p-5 md:p-6 flex flex-col min-h-[110px] relative">
-          <div className="flex items-center w-full">
+        <div key={item.label} className="bg-white rounded-xl border border-slate-200 shadow-sm p-5 md:p-6 flex flex-col min-h-[120px] relative hover:shadow-md transition-shadow group">
+          <div className="flex items-center w-full gap-3">
             {/* Icon kiri */}
-            <div className="mr-2">{item.icon}</div>
-            <span className="text-3xl font-extrabold text-blue-900">{item.value}</span>
+            <div className="text-slate-500 group-hover:text-[#0A2540] transition-colors">{item.icon}</div>
+            <span className="text-4xl font-extrabold text-[#0A2540] tracking-tight">{item.value}</span>
             {/* Badge kanan atas */}
-            <span className="absolute right-4 top-4 text-xs bg-gray-100 text-gray-700 px-2 py-0.5 rounded-full font-bold">{item.label}</span>
+            <span className="absolute right-4 top-4 text-[10px] bg-slate-100 border border-slate-200 text-[#0A2540] px-2.5 py-1 rounded-md font-extrabold tracking-wider">{item.label}</span>
           </div>
-          <div className="text-xs text-gray-500 font-bold tracking-widest uppercase w-full text-left mt-4">{item.title}</div>
+          <div className="text-xs text-slate-500 font-extrabold tracking-widest uppercase w-full text-left mt-5 group-hover:text-[#0A2540] transition-colors line-clamp-1">{item.title}</div>
         </div>
       ))}
       {/* Card 4: Capaian Pemantauan Kinerja */}
-      <div className="bg-blue-900 rounded-2xl shadow-sm p-5 md:p-6 flex flex-col items-center justify-center min-h-[110px] relative">
-        <span className="absolute right-4 top-4 text-xs bg-blue-800 text-white px-2 py-0.5 rounded-full font-bold">%</span>
+      <div className="bg-[#0A2540] rounded-xl shadow-md p-5 md:p-6 flex flex-col items-center justify-center min-h-[120px] relative border border-[#0A2540]">
+        <span className="absolute right-4 top-4 text-[10px] bg-white text-[#0A2540] px-2.5 py-1 rounded-md font-extrabold shadow-sm">%</span>
         <span className="text-3xl font-extrabold text-white mb-1">
           {role === "admin" ? "78.5%" : "82.0%"}
         </span>

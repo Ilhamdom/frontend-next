@@ -1,12 +1,11 @@
 "use client";
-import UserLayout from "../components/UserLayout";
 import UserPageHeader from "../../components/user/UserPageHeader";
 import UserTableCard from "../../components/user/UserTableCard";
 import UserProgressBar from "../../components/user/UserProgressBar";
 
 export default function UserSasaranProgramPage() {
   return (
-    <UserLayout>
+    <div className="flex flex-col w-full">
       <UserPageHeader
         title="Sasaran Program (SP)"
         description="Penjabaran strategis ke tingkat program kerja (Level JPT Pratama)."
@@ -48,6 +47,6 @@ export default function UserSasaranProgramPage() {
           </tbody>
         </table>
       </UserTableCard>
-    </UserLayout>
+    </div>
   );
 }

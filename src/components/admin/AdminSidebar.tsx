@@ -1,6 +1,7 @@
 "use client";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { IconDashboard, IconTarget, IconChartBar, IconListCheck, IconChartPie, IconDeviceAnalytics, IconNetwork, IconReport } from "@tabler/icons-react";
 
 interface AdminSidebarProps {
   isOpen: boolean;
@@ -10,71 +11,42 @@ const menuItems = [
   {
     label: "Dashboard",
     href: "/admin/dashboard",
-    icon: (
-      <svg width="20" height="20" fill="none" viewBox="0 0 20 20" className="mr-3">
-        <rect x="3" y="3" width="6" height="6" rx="2" fill="currentColor" className="text-blue-400" />
-        <rect x="11" y="3" width="6" height="6" rx="2" fill="currentColor" className="text-blue-400" />
-        <rect x="3" y="11" width="6" height="6" rx="2" fill="currentColor" className="text-blue-400" />
-        <rect x="11" y="11" width="6" height="6" rx="2" fill="currentColor" className="text-blue-400" />
-      </svg>
-    ),
+    icon: <IconDashboard size={22} className="mr-3 opacity-80 group-hover:opacity-100 transition-opacity" stroke={1.5} />,
   },
   {
     label: "Visi, Misi & Tujuan",
     href: "/admin/visi-misi",
-    icon: (
-      <svg width="20" height="20" fill="none" viewBox="0 0 20 20" className="mr-3">
-        <path d="M10 3v14M3 10h14" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
-      </svg>
-    ),
+    icon: <IconTarget size={22} className="mr-3 opacity-80 group-hover:opacity-100 transition-opacity" stroke={1.5} />,
   },
   {
     label: "Sasaran Strategis",
     href: "/admin/sasaran-strategis",
-    icon: (
-      <svg width="20" height="20" fill="none" viewBox="0 0 20 20" className="mr-3">
-        <circle cx="10" cy="10" r="8" stroke="currentColor" strokeWidth="2" />
-        <circle cx="10" cy="10" r="3" fill="currentColor" className="text-blue-400" />
-      </svg>
-    ),
+    icon: <IconDeviceAnalytics size={22} className="mr-3 opacity-80 group-hover:opacity-100 transition-opacity" stroke={1.5} />,
   },
   {
     label: "Sasaran Program",
     href: "/admin/sasaran-program",
-    icon: (
-      <svg width="20" height="20" fill="none" viewBox="0 0 20 20" className="mr-3">
-        <rect x="4" y="4" width="12" height="12" rx="3" stroke="currentColor" strokeWidth="2" />
-      </svg>
-    ),
+    icon: <IconListCheck size={22} className="mr-3 opacity-80 group-hover:opacity-100 transition-opacity" stroke={1.5} />,
   },
   {
     label: "Sasaran Kegiatan",
     href: "/admin/sasaran-kegiatan",
-    icon: (
-      <svg width="20" height="20" fill="none" viewBox="0 0 20 20" className="mr-3">
-        <path d="M4 10h12M10 4v12" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
-      </svg>
-    ),
+    icon: <IconChartPie size={22} className="mr-3 opacity-80 group-hover:opacity-100 transition-opacity" stroke={1.5} />,
+  },
+  {
+    label: "Laporan Realisasi",
+    href: "/admin/laporan-realisasi",
+    icon: <IconReport size={22} className="mr-3 opacity-80 group-hover:opacity-100 transition-opacity" stroke={1.5} />,
   },
   {
     label: "Pemantauan Kinerja",
     href: "/admin/pemantauan-kinerja",
-    icon: (
-      <svg width="20" height="20" fill="none" viewBox="0 0 20 20" className="mr-3">
-        <rect x="3" y="10" width="3" height="7" rx="1.5" fill="currentColor" className="text-blue-400" />
-        <rect x="8.5" y="6" width="3" height="11" rx="1.5" fill="currentColor" className="text-blue-400" />
-        <rect x="14" y="3" width="3" height="14" rx="1.5" fill="currentColor" className="text-blue-400" />
-      </svg>
-    ),
+    icon: <IconChartBar size={22} className="mr-3 opacity-80 group-hover:opacity-100 transition-opacity" stroke={1.5} />,
   },
   {
     label: "Cascading",
     href: "/admin/cascading",
-    icon: (
-      <svg width="20" height="20" fill="none" viewBox="0 0 20 20" className="mr-3">
-        <path d="M5 5h10v3H5zM5 12h10v3H5z" stroke="currentColor" strokeWidth="2" />
-      </svg>
-    ),
+    icon: <IconNetwork size={22} className="mr-3 opacity-80 group-hover:opacity-100 transition-opacity" stroke={1.5} />,
   },
 ];
 
@@ -82,28 +54,28 @@ const AdminSidebar: React.FC<AdminSidebarProps> = ({ isOpen }) => {
   const pathname = usePathname();
   return (
     <aside
-      className={`relative shrink-0 overflow-hidden transition-all duration-300 ease-in-out
-        ${isOpen ? 'w-[248px] opacity-100 translate-x-0' : 'w-0 opacity-0 -translate-x-full'}
+      className={`relative shrink-0 overflow-hidden transition-all duration-300 ease-in-out bg-brand-blue-950
+        ${isOpen ? 'w-[248px]' : 'w-[80px]'}
       `}
-      aria-hidden={!isOpen}
+      aria-hidden={false}
     >
-      <div className="min-h-screen w-[248px] bg-[#0B1F3A] text-white flex flex-col justify-between">
+      <div className={`h-full min-h-screen text-white flex flex-col justify-between ${isOpen ? 'w-[248px]' : 'w-[80px]'}`}>
         <div className="flex flex-col h-full">
           {/* Branding */}
-          <div className="flex flex-col items-center py-8 border-b border-blue-900">
-          <div className="w-12 h-12 bg-blue-900 rounded-lg flex items-center justify-center mb-2">
-            {/* Placeholder logo */}
-            <svg width="28" height="28" fill="none" viewBox="0 0 28 28">
-              <rect width="28" height="28" rx="6" fill="#FFD600" />
-              <text x="14" y="19" textAnchor="middle" fontSize="14" fill="#0B1F3A" fontWeight="bold">L</text>
-            </svg>
-          </div>
-          <div className="text-2xl font-bold text-white tracking-wide">LAN RI</div>
-          <div className="text-xs font-semibold text-yellow-400 mt-1 tracking-widest">SI-REVA 2026</div>
+          <div className={`flex flex-col items-center py-6 border-b border-brand-blue-900/50 ${isOpen ? '' : 'px-0'}`}>
+            <div className={`flex items-center justify-center mb-1 ${isOpen ? 'w-16 h-16' : 'w-12 h-12'}`}>
+              <img src="/images/logo-lan.png" alt="Logo LAN" className="w-full h-full object-contain drop-shadow-md" />
+            </div>
+            {isOpen && (
+              <>
+                <div className="text-2xl font-bold text-white tracking-wide mt-1">LAN RI</div>
+                <div className="text-[10px] font-bold text-brand-gold-400 mt-1 tracking-widest whitespace-nowrap">SI-REVA 2026</div>
+              </>
+            )}
           </div>
           {/* Menu Section */}
-          <div className="px-4 mt-8 flex-1">
-            <div className="text-xs text-blue-200 font-semibold mb-3 tracking-widest">MENU UTAMA</div>
+          <div className="px-3 mt-6 flex-1">
+            {isOpen && <div className="text-[10px] text-brand-blue-200 font-bold mb-3 tracking-widest mt-2 px-1">MENU UTAMA</div>}
             <nav className="flex flex-col gap-1">
               {menuItems.map((item) => {
                 const active = pathname === item.href;
@@ -111,26 +83,17 @@ const AdminSidebar: React.FC<AdminSidebarProps> = ({ isOpen }) => {
                   <Link
                     key={item.href}
                     href={item.href}
-                    className={`flex items-center px-3 py-2 rounded-lg font-medium text-sm transition-colors ${active ? "bg-blue-700 text-white" : "text-blue-100 hover:bg-blue-800 hover:text-white"}`}
+                    title={!isOpen ? item.label : undefined}
+                    className={`group flex items-center ${isOpen ? 'px-3 justify-start' : 'px-0 justify-center'} py-2.5 rounded-lg font-bold text-sm transition-all ${active ? "bg-brand-blue-800 text-white shadow-md" : "text-brand-blue-100 hover:bg-brand-blue-900 hover:text-white"}`}
                   >
-                    {item.icon}
-                    {item.label}
+                    <span className={`flex items-center justify-center shrink-0 ${isOpen ? 'mr-3' : ''}`}>{item.icon}</span>
+                    {isOpen && <span className="whitespace-nowrap">{item.label}</span>}
                   </Link>
                 );
               })}
             </nav>
           </div>
-          {/* Logout */}
-          <div className="px-4 pb-6">
-            <button className="w-full flex items-center justify-center gap-2 px-3 py-2 rounded-lg font-semibold text-sm bg-pink-100 text-pink-700 hover:bg-pink-200 transition-colors">
-              {/* Icon logout */}
-              <svg width="18" height="18" fill="none" viewBox="0 0 18 18">
-                <path d="M7 5v-1a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2h-4a2 2 0 0 1-2-2v-1" stroke="currentColor" strokeWidth="1.5" />
-                <path d="M11 9H3m0 0l2.5-2.5M3 9l2.5 2.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-              </svg>
-              Logout Sistem
-            </button>
-          </div>
+          {/* Logout dipindahkan ke Topbar */}
         </div>
       </div>
     </aside>
