@@ -1,6 +1,6 @@
 "use client";
 import React, { useState, useEffect } from "react";
-import AdminModalShell from "./AdminModalShell";
+import Modal from "../../../app/components/ui/Modal";
 import { Textarea } from "../ui/Textarea";
 
 interface AdminVerifikasiModalProps {
@@ -27,10 +27,11 @@ export default function AdminVerifikasiModal({
   if (!initialData) return null;
 
   return (
-    <AdminModalShell
+    <Modal
       open={open}
       onClose={onClose}
       title="Verifikasi Laporan Realisasi"
+      widthClass="max-w-2xl"
     >
       <div className="w-full max-w-2xl mt-4">
         {/* Read-only Data User */}
@@ -113,6 +114,6 @@ export default function AdminVerifikasiModal({
           </button>
         </div>
       </div>
-    </AdminModalShell>
+    </Modal>
   );
 }

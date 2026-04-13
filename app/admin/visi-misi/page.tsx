@@ -1,6 +1,6 @@
 "use client";
-import AdminPageHeader from "../../../src/components/admin/AdminPageHeader";
-import AdminInfoCard from "../../../src/components/admin/AdminInfoCard";
+import PageHeader from "../../components/PageHeader";
+import InfoCard from "../../components/InfoCard";
 import { useSearch } from "../../../src/context/SearchContext";
 import { highlightText } from "../../../src/utils/textHighlight";
 
@@ -9,7 +9,7 @@ export default function AdminVisiMisiPage() {
 
   return (
     <div className="flex flex-col w-full">
-      <AdminPageHeader
+      <PageHeader
         title="Visi, Misi & Tujuan"
         description="Fondasi arah kebijakan dan landasan perencanaan strategis LAN RI."
       />
@@ -30,15 +30,15 @@ export default function AdminVisiMisiPage() {
       {/* Grid 2 kolom */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {/* Misi Organisasi */}
-        <AdminInfoCard title="Misi Organisasi" accent="blue">
+        <InfoCard title="Misi Organisasi" accent="blue">
           <ol className="list-decimal list-inside space-y-2">
             <li className="bg-gray-50 rounded-lg px-3 py-2">{highlightText("Meningkatkan kualitas SDM aparatur negara.", searchQuery)}</li>
             <li className="bg-gray-50 rounded-lg px-3 py-2">{highlightText("Mengembangkan inovasi tata kelola pemerintahan.", searchQuery)}</li>
             <li className="bg-gray-50 rounded-lg px-3 py-2">{highlightText("Memperkuat sistem pengawasan dan akuntabilitas.", searchQuery)}</li>
           </ol>
-        </AdminInfoCard>
+        </InfoCard>
         {/* Tujuan Strategis */}
-        <AdminInfoCard title="Tujuan Strategis" accent="orange">
+        <InfoCard title="Tujuan Strategis" accent="orange">
           <table className="w-full text-sm">
             <thead>
               <tr className="text-gray-500 uppercase text-xs">
@@ -53,7 +53,7 @@ export default function AdminVisiMisiPage() {
               <tr><td className="font-semibold pr-4">{highlightText("T-04", searchQuery)}</td><td>{highlightText("Meningkatkan akuntabilitas kinerja", searchQuery)}</td></tr>
             </tbody>
           </table>
-        </AdminInfoCard>
+        </InfoCard>
       </div>
     </div>
   );

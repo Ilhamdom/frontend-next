@@ -1,6 +1,6 @@
 "use client";
 import { useState, useEffect } from "react";
-import AdminModalShell from "./AdminModalShell";
+import Modal from "../../../app/components/ui/Modal";
 import { Input } from "../ui/Input";
 import { Select } from "../ui/Select";
 import { Textarea } from "../ui/Textarea";
@@ -79,10 +79,11 @@ export default function SasaranKegiatanFormModal({
   };
 
   return (
-    <AdminModalShell
+    <Modal
       open={open}
       onClose={onClose}
       title={mode === "view" ? "Lihat Sasaran Kegiatan" : mode === "edit" ? "Edit Sasaran Kegiatan" : "Tambah Sasaran Kegiatan"}
+      widthClass="max-w-2xl"
     >
       <form onSubmit={handleSubmit} className="w-full max-w-2xl mt-4">
         <div className="grid grid-cols-1 gap-4 md:grid-cols-2 space-y-2 border-b border-gray-100 pb-6">
@@ -171,6 +172,6 @@ export default function SasaranKegiatanFormModal({
           )}
         </div>
       </form>
-    </AdminModalShell>
+    </Modal>
   );
 }

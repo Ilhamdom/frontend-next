@@ -1,5 +1,5 @@
 "use client";
-import AdminPageHeader from "../../../src/components/admin/AdminPageHeader";
+import PageHeader from "../../components/PageHeader";
 import AdminTableCard from "../../../src/components/admin/AdminTableCard";
 import AdminStatusBadge from "../../../src/components/admin/AdminStatusBadge";
 import SasaranStrategisFormModal from "../../../src/components/admin/SasaranStrategisFormModal";
@@ -80,17 +80,9 @@ export default function AdminSasaranStrategisPage() {
 
   return (
     <div className="flex flex-col w-full">
-      <AdminPageHeader
-        title="Sasaran Strategis (SS)"
-        description="Peta jalan strategis dan indikator kinerja makro (Level JPT Utama)."
-        action={
-          <button
-            className="bg-blue-800 text-white px-4 py-2 rounded-lg font-semibold text-sm hover:bg-blue-900"
-            onClick={handleAdd}
-          >
-            + Tambah SS
-          </button>
-        }
+      <PageHeader
+        title="Sasaran Strategis"
+        description="Sasaran strategis organisasi dan indikator kinerjanya."
       />
       {/* Summary Cards */}
       <div className="max-w-screen-lg mx-auto grid grid-cols-1 sm:grid-cols-3 gap-4 mb-8">

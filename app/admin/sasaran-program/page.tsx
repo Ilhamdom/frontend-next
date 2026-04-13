@@ -1,6 +1,6 @@
 "use client";
-import AdminPageHeader from "../../../src/components/admin/AdminPageHeader";
-import AdminTableCard from "../../../src/components/admin/AdminTableCard";
+import PageHeader from "../../components/PageHeader";
+import TableCard from "../../components/TableCard";
 import AdminProgressBar from "../../../src/components/admin/AdminProgressBar";
 import SasaranProgramFormModal from "../../../src/components/admin/SasaranProgramFormModal";
 import React, { useState } from "react";
@@ -61,19 +61,11 @@ export default function AdminSasaranProgramPage() {
 
   return (
     <div className="flex flex-col w-full">
-      <AdminPageHeader
-        title="Sasaran Program (SP)"
-        description="Penjabaran strategis ke tingkat program kerja (Level JPT Pratama)."
-        action={
-          <button
-            className="bg-blue-800 text-white px-4 py-2 rounded-lg font-semibold text-sm hover:bg-blue-900"
-            onClick={handleAdd}
-          >
-            + Tambah SP
-          </button>
-        }
+      <PageHeader
+        title="Sasaran Program"
+        description="Sasaran program dan indikator kinerjanya."
       />
-      <AdminTableCard
+      <TableCard
         title="Daftar Sasaran Program"
         toolbar={
           <select className="border border-gray-300 rounded-lg px-3 py-1 text-sm">
@@ -125,7 +117,7 @@ export default function AdminSasaranProgramPage() {
             ))}
           </tbody>
         </table>
-      </AdminTableCard>
+      </TableCard>
       <SasaranProgramFormModal open={modalOpen} onClose={() => setModalOpen(false)} mode={modalMode} initialData={selectedData} onSave={handleSave} />
     </div>
   );

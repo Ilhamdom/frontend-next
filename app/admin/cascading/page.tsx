@@ -1,6 +1,6 @@
 "use client";
-import AdminPageHeader from "../../../src/components/admin/AdminPageHeader";
-import CascadingSetupModal from "../../../src/components/admin/CascadingSetupModal";
+import PageHeader from "../../components/PageHeader";
+import Modal from "../../components/ui/Modal";
 import React, { useState } from "react";
 
 export default function AdminCascadingPage() {
@@ -9,7 +9,7 @@ export default function AdminCascadingPage() {
 
   return (
     <div className="flex flex-col w-full">
-      <AdminPageHeader
+      <PageHeader
         title="Cascading Kinerja"
         description="Peta penurunan (alignment) sasaran dari tingkat organisasi hingga individu."
         action={
@@ -56,7 +56,10 @@ export default function AdminCascadingPage() {
           </div>
         </div>
       </div>
-      <CascadingSetupModal open={modalOpen} onClose={() => setModalOpen(false)} />
+      <Modal open={modalOpen} onClose={() => setModalOpen(false)} title="Setup Cascading">
+        {/* TODO: Add setup cascading form or content here */}
+        <div>Setup cascading content goes here.</div>
+      </Modal>
     </div>
   );
 }

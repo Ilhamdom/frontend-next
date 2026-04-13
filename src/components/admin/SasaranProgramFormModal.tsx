@@ -1,6 +1,6 @@
 "use client";
 import { useState, useEffect } from "react";
-import AdminModalShell from "./AdminModalShell";
+import Modal from "../../../app/components/ui/Modal";
 import { Input } from "../ui/Input";
 import { Select } from "../ui/Select";
 import { Textarea } from "../ui/Textarea";
@@ -67,10 +67,11 @@ export default function SasaranProgramFormModal({ open, mode = "create", initial
   };
 
   return (
-    <AdminModalShell
+    <Modal
       open={open}
       onClose={onClose}
       title={mode === "view" ? "Lihat Sasaran Program" : mode === "edit" ? "Edit Sasaran Program" : "Tambah Sasaran Program"}
+      widthClass="max-w-2xl"
     >
       <form onSubmit={handleSubmit} className="w-full max-w-2xl space-y-6 mt-4">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 border-b border-gray-100 pb-6">
@@ -147,6 +148,6 @@ export default function SasaranProgramFormModal({ open, mode = "create", initial
           )}
         </div>
       </form>
-    </AdminModalShell>
+    </Modal>
   );
 }
