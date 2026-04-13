@@ -1,5 +1,5 @@
-import AuthLayout from "../AuthLayout";
-import ContactAdminForm from "../ContactAdminForm";
+import AuthLayout from "../components/auth/AuthLayout";
+import ContactAdminForm from "../components/auth/ContactAdminForm";
 
 export default function HubungiAdminPage() {
   return (

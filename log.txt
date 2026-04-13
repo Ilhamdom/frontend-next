@@ -1,0 +1,258 @@
+On branch main
+Your branch and 'origin/main' have diverged,
+and have 1 and 12 different commits each, respectively.
+  (use "git pull" to merge the remote branch into yours)
+
+You have unmerged paths.
+  (fix conflicts and run "git commit")
+  (use "git merge --abort" to abort the merge)
+
+Changes to be committed:
+	new file:   .vscode/settings.json
+	new file:   TODO.md
+	deleted:    app/AuthBackLink.tsx
+	deleted:    app/FloatingToolbar.tsx
+	deleted:    app/HeroImageCard.tsx
+	deleted:    app/HeroText.tsx
+	deleted:    app/PrimaryButton.tsx
+	renamed:    app/user/cascading/page.tsx -> app/[slug]/cascading/page.tsx
+	new file:   app/[slug]/dashboard/page.tsx
+	new file:   app/[slug]/laporan/page.tsx
+	new file:   app/[slug]/master-unit-kerja/page.tsx
+	new file:   app/[slug]/master-user/page.tsx
+	new file:   app/[slug]/pemantauan-kinerja/page.tsx
+	new file:   app/[slug]/rencana-aksi/page.tsx
+	new file:   app/[slug]/sasaran-kegiatan/page.tsx
+	new file:   app/[slug]/sasaran-program/page.tsx
+	new file:   app/[slug]/sasaran-strategis/page.tsx
+	new file:   app/[slug]/visi-misi-tujuan/page.tsx
+	deleted:    app/admin/components/AdminStatCard.tsx
+	deleted:    app/admin/components/DashboardSummaryGrid.tsx
+	deleted:    app/admin/components/DashboardVisionCard.tsx
+	deleted:    app/admin/components/DashboardWarningCard.tsx
+	deleted:    app/admin/components/ModalWrapper.tsx
+	new file:   app/api/auth/login/route.ts
+	new file:   app/api/indikator-kinerja/[id]/route.ts
+	new file:   app/api/indikator-kinerja/route.ts
+	new file:   app/api/misi/[id]/route.ts
+	new file:   app/api/misi/route.ts
+	new file:   app/api/periode/[id]/route.ts
+	new file:   app/api/periode/route.ts
+	new file:   app/api/sasaran-kegiatan/[id]/route.ts
+	new file:   app/api/sasaran-kegiatan/route.ts
+	new file:   app/api/sasaran-program/[id]/route.ts
+	new file:   app/api/sasaran-program/route.ts
+	new file:   app/api/sasaran-strategis/[id]/route.ts
+	new file:   app/api/sasaran-strategis/route.ts
+	new file:   app/api/tahun/[id]/route.ts
+	new file:   app/api/tahun/route.ts
+	new file:   app/api/target-indikator/route.ts
+	new file:   app/api/target-kinerja/[id]/route.ts
+	new file:   app/api/target-kinerja/route.ts
+	new file:   app/api/tujuan/[id]/route.ts
+	new file:   app/api/tujuan/route.ts
+	new file:   app/api/users/route.ts
+	new file:   app/api/visi-misi-tujuan/route.ts
+	new file:   app/api/visi/[id]/route.ts
+	new file:   app/api/visi/route.ts
+	new file:   app/components/AppShell.tsx
+	new file:   app/components/BadgeRilis.tsx
+	new file:   app/components/DasarHukumSection.tsx
+	new file:   app/components/ExecutiveInfoCards.tsx
+	new file:   app/components/FloatingToolbar.tsx
+	new file:   app/components/HeroImageCard.tsx
+	renamed:    app/HeroSection.tsx -> app/components/HeroSection.tsx
+	new file:   app/components/HeroText.tsx
+	renamed:    app/components/user/UserInfoCard.tsx -> app/components/InfoCard.tsx
+	new file:   app/components/InformasiLainnyaSection.tsx
+	new file:   app/components/LayoutShell.tsx
+	new file:   app/components/PageHeader.tsx
+	new file:   app/components/PerformanceMap.tsx
+	new file:   app/components/PerformanceTrendCard.tsx
+	renamed:    app/components/user/UserProgressBar.tsx -> app/components/ProgressBar.tsx
+	new file:   app/components/RecentActivityCard.tsx
+	renamed:    app/SectionTitle.tsx -> app/components/SectionTitle.tsx
+	new file:   app/components/Sidebar.tsx
+	new file:   app/components/SidebarContext.tsx
+	renamed:    app/components/user/UserStatCard.tsx -> app/components/StatCard.tsx
+	renamed:    app/components/user/UserStatusBadge.tsx -> app/components/StatusBadge.tsx
+	new file:   app/components/SummaryCardsRow.tsx
+	renamed:    app/components/user/UserTableCard.tsx -> app/components/TableCard.tsx
+	new file:   app/components/ThemeClient.tsx
+	new file:   app/components/Topbar.tsx
+	new file:   app/components/UnitProgressTable.tsx
+	new file:   app/components/VisiMisiSection.tsx
+	new file:   app/components/auth/AuthBackLink.tsx
+	new file:   app/components/auth/AuthBrandPanel.tsx
+	new file:   app/components/auth/AuthLayout.tsx
+	new file:   app/components/auth/CarouselAuthImages.tsx
+	new file:   app/components/auth/ContactAdminForm.tsx
+	new file:   app/components/auth/ForgotPasswordForm.tsx
+	new file:   app/components/auth/LoginForm.tsx
+	new file:   app/components/auth/ResetPasswordForm.tsx
+	renamed:    app/Footer.tsx -> app/components/footer/Footer.tsx
+	renamed:    app/NavDropdown.tsx -> app/components/navbar/NavDropdown.tsx
+	new file:   app/components/navbar/Navbar.tsx
+	new file:   app/components/ui/ButtonVariantTwo.tsx
+	new file:   app/components/ui/Modal.tsx
+	new file:   app/components/ui/PrimaryButton.tsx
+	new file:   app/components/ui/TableWithAPI.tsx
+	new file:   app/components/ui/TextFieldBasic.tsx
+	new file:   app/components/ui/VisiMisiTableClient.tsx
+	deleted:    app/components/user/UserLayoutShell.tsx
+	deleted:    app/components/user/UserPageHeader.tsx
+	new file:   app/globals.css.d.ts
+	modified:   app/hubungi-admin/page.tsx
+	new file:   app/jsx.d.ts
+	modified:   app/layout.tsx
+	deleted:    app/login/.move
+	modified:   app/login/page.tsx
+	modified:   app/page.tsx
+	deleted:    app/user/UserNavbar.tsx
+	deleted:    app/user/laporan-realisasi/create/page.tsx
+	deleted:    app/user/laporan-realisasi/page.tsx
+	deleted:    app/user/layout.tsx
+	deleted:    app/user/visi-misi/page.tsx
+	renamed:    src/app/admin/cascading/page.tsx -> diff.txt
+	new file:   drizzle.config.ts
+	new file:   fix-alias.js
+	new file:   fix-layout.js
+	modified:   package.json
+	new file:   pnpm-lock.yaml
+	new file:   public/LANRI-ORG.png
+	new file:   public/LAN_9694.JPG
+	new file:   public/LAN_9736.JPG
+	new file:   public/LAN_9802.JPG
+	new file:   public/logolanwhite.png
+	new file:   refactor.js
+	deleted:    src/app/admin/pemantauan-kinerja/page.tsx
+	deleted:    src/app/admin/sasaran-kegiatan/page.tsx
+	deleted:    src/app/admin/sasaran-program/page.tsx
+	deleted:    src/app/admin/sasaran-strategis/page.tsx
+	deleted:    src/app/admin/visi-misi-tujuan/page.tsx
+	deleted:    src/app/api/contact-admin/route.ts
+	deleted:    src/app/user/cascading/page.tsx
+	deleted:    src/app/user/dashboard/page.tsx
+	deleted:    src/app/user/pemantauan-kinerja/page.tsx
+	deleted:    src/app/user/sasaran-program/page.tsx
+	deleted:    src/app/user/sasaran-strategis/page.tsx
+	deleted:    src/app/user/visi-misi-tujuan/page.tsx
+	modified:   src/components/AuthBrandPanel.tsx
+	new file:   src/components/LayoutShell.tsx
+	modified:   src/components/LoginForm.tsx
+	renamed:    src/components/user/UserPageHeader.tsx -> src/components/PageHeader.tsx
+	new file:   src/components/Sidebar.tsx
+	renamed:    src/components/user/UserTopbar.tsx -> src/components/Topbar.tsx
+	deleted:    src/components/admin/AdminInfoCard.tsx
+	deleted:    src/components/admin/AdminModalShell.tsx
+	deleted:    src/components/admin/AdminPageHeader.tsx
+	deleted:    src/components/admin/AdminTableCard.tsx
+	deleted:    src/components/admin/CascadingSetupModal.tsx
+	deleted:    src/components/admin/DashboardEditModal.tsx
+	deleted:    src/components/user/UserInfoCard.tsx
+	deleted:    src/components/user/UserLayoutShell.tsx
+	deleted:    src/components/user/UserProgressBar.tsx
+	deleted:    src/components/user/UserStatCard.tsx
+	deleted:    src/components/user/UserStatusBadge.tsx
+	deleted:    src/components/user/UserTableCard.tsx
+	deleted:    src/data/admin/formOptions.ts
+	deleted:    src/data/user/cascading.ts
+	deleted:    src/data/user/dashboard.ts
+	deleted:    src/data/user/navigation.ts
+	deleted:    src/data/user/pemantauanKinerja.ts
+	deleted:    src/data/user/sasaranKegiatan.ts
+	deleted:    src/data/user/sasaranProgram.ts
+	deleted:    src/data/user/sasaranStrategis.ts
+	deleted:    src/data/user/visiMisiTujuan.ts
+	new file:   src/db/index.ts
+	new file:   src/db/queries/visi-misi-tujuan.ts
+	new file:   src/db/schema.ts
+	new file:   src/db/tables/base.ts
+	new file:   src/db/tables/indikator-kinerja.ts
+	new file:   src/db/tables/kegiatan-unit.ts
+	new file:   src/db/tables/kegiatan.ts
+	new file:   src/db/tables/misi.ts
+	new file:   src/db/tables/pendanaan.ts
+	new file:   src/db/tables/periode.ts
+	new file:   src/db/tables/program.ts
+	new file:   src/db/tables/realisasi-indikator.ts
+	new file:   src/db/tables/roles.ts
+	new file:   src/db/tables/sasaran-kegiatan.ts
+	new file:   src/db/tables/sasaran-program.ts
+	new file:   src/db/tables/sasaran-strategis.ts
+	new file:   src/db/tables/sub-kegiatan.ts
+	new file:   src/db/tables/sumber-dana.ts
+	new file:   src/db/tables/tahun.ts
+	new file:   src/db/tables/target-indikator.ts
+	new file:   src/db/tables/tujuan.ts
+	new file:   src/db/tables/unit-kerja.ts
+	new file:   src/db/tables/users.ts
+	new file:   src/db/tables/visi.ts
+	new file:   src/index.css
+	new file:   src/store/userStore.ts
+	new file:   src/validators/common.ts
+	new file:   src/validators/indikator-kinerja.ts
+	new file:   src/validators/misi.ts
+	new file:   src/validators/periode.ts
+	new file:   src/validators/sasaran-kegiatan.ts
+	new file:   src/validators/sasaran-program.ts
+	new file:   src/validators/sasaran-strategis.ts
+	new file:   src/validators/tahun.ts
+	new file:   src/validators/target-kinerja.ts
+	new file:   src/validators/tujuan.ts
+	new file:   src/validators/visi.ts
+	modified:   tsconfig.json
+
+Unmerged paths:
+  (use "git add/rm <file>..." as appropriate to mark resolution)
+	deleted by them: app/AuthBrandPanel.tsx
+	deleted by them: app/AuthLayout.tsx
+	deleted by them: app/ContactAdminForm.tsx
+	deleted by them: app/DasarHukumSection.tsx
+	deleted by them: app/LoginForm.tsx
+	deleted by them: app/Navbar.tsx
+	deleted by them: app/ResetPasswordForm.tsx
+	deleted by them: app/VisiMisiSection.tsx
+	added by us:     app/[slug]/UserNavbar.tsx
+	added by us:     app/[slug]/laporan-realisasi/create/page.tsx
+	added by us:     app/[slug]/laporan-realisasi/page.tsx
+	added by us:     app/[slug]/layout.tsx
+	added by us:     app/[slug]/visi-misi/page.tsx
+	deleted by them: app/admin/cascading/page.tsx
+	deleted by them: app/admin/components/AdminLayout.tsx
+	deleted by them: app/admin/components/DashboardCascadingCard.tsx
+	deleted by them: app/admin/dashboard/page.tsx
+	deleted by them: app/admin/pemantauan-kinerja/page.tsx
+	deleted by them: app/admin/sasaran-kegiatan/page.tsx
+	deleted by them: app/admin/sasaran-program/page.tsx
+	deleted by them: app/admin/sasaran-strategis/page.tsx
+	deleted by them: app/admin/visi-misi-tujuan/page.tsx
+	deleted by them: app/admin/visi-misi/page.tsx
+	deleted by them: app/components/user/UserSidebar.tsx
+	deleted by them: app/components/user/UserTopbar.tsx
+	deleted by us:   app/forgot-password/page.tsx
+	deleted by them: app/user/components/UserLayout.tsx
+	deleted by them: app/user/dashboard/page.tsx
+	deleted by them: app/user/pemantauan-kinerja/page.tsx
+	deleted by them: app/user/sasaran-kegiatan/page.tsx
+	deleted by them: app/user/sasaran-program/page.tsx
+	deleted by them: app/user/sasaran-strategis/page.tsx
+	deleted by them: app/user/visi-misi-tujuan/page.tsx
+	deleted by them: src/app/user/sasaran-kegiatan/page.tsx
+	deleted by them: src/components/admin/AdminLayoutShell.tsx
+	deleted by them: src/components/admin/AdminProgressBar.tsx
+	deleted by them: src/components/admin/AdminSidebar.tsx
+	deleted by them: src/components/admin/AdminStatCard.tsx
+	deleted by them: src/components/admin/AdminStatusBadge.tsx
+	deleted by them: src/components/admin/AdminTopbar.tsx
+	deleted by them: src/components/admin/SasaranKegiatanFormModal.tsx
+	deleted by them: src/components/admin/SasaranProgramFormModal.tsx
+	deleted by them: src/components/admin/SasaranStrategisFormModal.tsx
+	deleted by them: src/components/user/UserSidebar.tsx
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+	diff_output.txt
+	git_status.txt
+	log.txt
+
