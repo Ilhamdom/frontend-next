@@ -8,15 +8,17 @@ export default function AdminLayoutShell({ children }: { children: React.ReactNo
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   return (
     <SearchProvider>
-      <div className="min-h-screen bg-[#eef2f6]">
-        <div className="flex min-h-screen">
+      <div className="h-screen flex">
+        {/* Sidebar: fixed di kiri */}
+        <div className="fixed inset-y-0 left-0 z-30">
           <AdminSidebar isOpen={isSidebarOpen} />
-          <div className="flex min-w-0 flex-1 flex-col">
-            <AdminTopbar onToggleSidebar={() => setIsSidebarOpen(prev => !prev)} />
-            <main className="min-w-0 flex-1 p-6 lg:p-8">
-              {children}
-            </main>
-          </div>
+        </div>
+        {/* Main content: margin-left sesuai lebar sidebar */}
+        <div className="flex-1 flex flex-col h-screen ml-[248px]">
+          <AdminTopbar onToggleSidebar={() => setIsSidebarOpen(prev => !prev)} />
+          <main className="flex-1 overflow-y-auto p-6 lg:p-8 bg-[#eef2f6]">
+            {children}
+          </main>
         </div>
       </div>
     </SearchProvider>
