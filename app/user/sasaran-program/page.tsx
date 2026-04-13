@@ -1,7 +1,7 @@
 "use client";
-import UserPageHeader from "../../components/user/UserPageHeader";
-import UserTableCard from "../../components/user/UserTableCard";
-import UserProgressBar from "../../components/user/UserProgressBar";
+import UserPageHeader from "@/components/user/UserPageHeader";
+import UserTableCard from "@/components/user/UserTableCard";
+import UserProgressBar from "@/components/user/UserProgressBar";
 
 export default function UserSasaranProgramPage() {
   return (

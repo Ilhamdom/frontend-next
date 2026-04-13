@@ -1,7 +1,7 @@
 "use client";
-import UserPageHeader from "../../components/user/UserPageHeader";
-import UserTableCard from "../../components/user/UserTableCard";
-import UserStatusBadge from "../../components/user/UserStatusBadge";
+import UserPageHeader from "@/components/user/UserPageHeader";
+import UserTableCard from "@/components/user/UserTableCard";
+import UserStatusBadge from "@/components/user/UserStatusBadge";
 
 const data = [
   {

@@ -1,6 +1,6 @@
 "use client";
-import UserPageHeader from "../../components/user/UserPageHeader";
-import UserInfoCard from "../../components/user/UserInfoCard";
+import UserPageHeader from "@/components/user/UserPageHeader";
+import UserInfoCard from "@/components/user/UserInfoCard";
 
 export default function UserPemantauanKinerjaPage() {
   return (
