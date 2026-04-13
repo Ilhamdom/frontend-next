@@ -1,10 +1,11 @@
 "use client";
-import UserPageHeader from "../../components/user/UserPageHeader";
+import LayoutShell from "@/components/LayoutShell";
+import PageHeader from "@/components/PageHeader";
 
 export default function CascadingPage() {
   return (
-    <div className="flex flex-col w-full">
-      <UserPageHeader
+    <LayoutShell>
+      <PageHeader
         title="Cascading Kinerja"
         description="Peta penurunan (alignment) sasaran dari tingkat organisasi hingga individu."
         action={
@@ -51,6 +52,6 @@ export default function CascadingPage() {
           </div>
         </div>
       </div>
-    </div>
+    </LayoutShell>
   );
 }

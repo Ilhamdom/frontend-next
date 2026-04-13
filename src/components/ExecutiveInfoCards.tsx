@@ -13,17 +13,14 @@ export default function ExecutiveInfoCards({ role }: ExecutiveInfoCardsProps) {
   return (
     <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
       {/* Card 1: VISI & TUJUAN */}
-      <div className="bg-white rounded-xl border border-slate-200 shadow-sm p-5 md:p-6 flex flex-col min-h-[180px] hover:border-[#0A2540]/30 transition-colors">
-        <div className="flex items-center justify-between mb-4">
-          <span className="font-extrabold text-[#0A2540] text-base tracking-wide flex items-center gap-2">
-            <div className="w-1.5 h-4 bg-yellow-400 rounded-sm"></div>
-            VISI & TUJUAN
-          </span>
-          <Link href={role === "admin" ? "/admin/visi-misi-tujuan" : "/user/visi-misi-tujuan"} className="text-xs text-blue-600 font-bold hover:text-[#0A2540] hover:underline transition-colors shrink-0">Lihat Detail</Link>
+      <div className="bg-white rounded-2xl border border-gray-200 shadow-sm p-5 md:p-6 flex flex-col min-h-[180px]">
+        <div className="flex items-center justify-between mb-3">
+          <span className="font-bold text-blue-900 text-base">VISI & TUJUAN</span>
+          <Link href={role === "admin" ? "/admin/visi-misi-tujuan" : "/user/visi-misi-tujuan"} className="text-xs text-blue-700 font-semibold hover:underline">Lihat Detail</Link>
         </div>
-        <div className="flex items-start gap-4 mb-4">
-          <div className="w-1.5 rounded-sm bg-yellow-400 h-auto min-h-[48px] self-stretch" />
-          <div className="bg-slate-50/80 rounded-lg px-4 py-3 text-[#2a3547] text-sm font-semibold flex-1 leading-snug border border-slate-100">
+        <div className="flex items-start gap-3 mb-3">
+          <div className="w-1.5 rounded-lg bg-yellow-400 h-full min-h-[44px]" />
+          <div className="bg-gray-50 rounded-xl px-4 py-2.5 text-gray-700 text-sm font-medium flex-1">
             Menjadi lembaga pembina yang mewujudkan birokrasi berkelas dunia untuk Indonesia Maju.
           </div>
         </div>
@@ -39,13 +36,10 @@ export default function ExecutiveInfoCards({ role }: ExecutiveInfoCardsProps) {
         </div>
       </div>
       {/* Card 2: STATUS CASCADING */}
-      <div className="bg-white rounded-xl border border-slate-200 shadow-sm p-5 md:p-6 flex flex-col min-h-[180px] hover:border-[#0A2540]/30 transition-colors">
-        <div className="flex items-center justify-between mb-4">
-          <span className="font-extrabold text-[#0A2540] text-base tracking-wide flex items-center gap-2">
-            <div className="w-1.5 h-4 bg-emerald-500 rounded-sm"></div>
-            STATUS CASCADING
-          </span>
-          <Link href={role === "admin" ? "/admin/cascading" : "/user/cascading"} className="text-xs text-blue-600 font-bold hover:text-[#0A2540] hover:underline transition-colors shrink-0">Lihat Pohon</Link>
+      <div className="bg-white rounded-2xl border border-gray-200 shadow-sm p-5 md:p-6 flex flex-col min-h-[180px]">
+        <div className="flex items-center justify-between mb-3">
+          <span className="font-bold text-blue-900 text-base">STATUS CASCADING</span>
+          <Link href={role === "admin" ? "/admin/cascading" : "/user/cascading"} className="text-xs text-blue-700 font-semibold hover:underline">Lihat Pohon</Link>
         </div>
         <div className="mb-1">
           <div className="text-xs text-gray-500 font-semibold mb-1">Penurunan Sasaran</div>

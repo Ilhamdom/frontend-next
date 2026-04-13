@@ -5,10 +5,12 @@ export default function Footer() {
       <div className="container mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-12 max-w-7xl">
         {/* Brand */}
         <div>
-          <div className="flex items-center gap-3 mb-3">
-            <div className="bg-white rounded p-1 w-10 h-10 flex items-center justify-center shadow-sm">
-              <img src="/images/logo-lan.png" alt="Logo LAN" className="w-full h-full object-contain" />
-            </div>
+          <div className="flex items-center gap-2 mb-3">
+            <span className="bg-yellow-400 rounded-full p-1">
+              <svg width="20" height="20" fill="none" viewBox="0 0 20 20">
+                <rect x="3" y="3" width="14" height="14" rx="3" fill="#FDE68A" />
+              </svg>
+            </span>
             <span className="text-2xl font-bold">SI-REVA 2026</span>
           </div>
           <p className="text-gray-200 text-sm">

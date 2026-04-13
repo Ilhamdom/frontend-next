@@ -1,5 +1,3 @@
-import { IconBook2, IconInfoCircle, IconClipboardList } from "@tabler/icons-react";
-
 const informasiLainnyaData = [
   {
     title: "BUKU PANDUAN",
@@ -7,7 +5,6 @@ const informasiLainnyaData = [
     cta: "Unduh PDF",
     href: "/docs/panduan.pdf",
     iconColor: "#14386b",
-    icon: <IconBook2 size={28} stroke={1.5} color="#14386b" />
   },
   {
     title: "FAQ",
@@ -15,7 +12,6 @@ const informasiLainnyaData = [
     cta: "Baca FAQ",
     href: "/faq",
     iconColor: "#2563eb",
-    icon: <IconInfoCircle size={28} stroke={1.5} color="#2563eb" />
   },
   {
     title: "PROTOKOL EVALUASI",
@@ -23,7 +19,6 @@ const informasiLainnyaData = [
     cta: "Lihat Protokol",
     href: "/protokol",
     iconColor: "#fbbf24",
-    icon: <IconClipboardList size={28} stroke={1.5} color="#fbbf24" />
   },
 ];
 
@@ -40,8 +35,10 @@ export default function InformasiLainnyaSection() {
           {informasiLainnyaData.map((item, idx) => (
             <div key={idx} className="bg-white rounded-2xl border border-gray-200 p-8 shadow-sm flex flex-col items-center text-center">
               {/* Icon box kecil */}
-              <div className="mb-4 flex items-center justify-center w-14 h-14 rounded-xl" style={{ background: item.iconColor + '15' }}>
-                {item.icon}
+              <div className="mb-4 flex items-center justify-center w-12 h-12 rounded-lg" style={{ background: item.iconColor + '20' }}>
+                <svg width="28" height="28" fill="none" viewBox="0 0 24 24">
+                  <rect x="4" y="4" width="16" height="16" rx="4" fill={item.iconColor} />
+                </svg>
               </div>
               <div className="mb-2 text-lg font-bold text-[#0B1F3A]">{item.title}</div>
               <div className="text-gray-700 text-base md:text-lg leading-relaxed mb-6">{item.desc}</div>
