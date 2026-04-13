@@ -11,6 +11,14 @@ html {
   --background: #ffffff;
   --foreground: #171717;
 }
+/* Hide scrollbar but keep scroll functionality */
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.hide-scrollbar {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;     /* Firefox */
+}
 @media (prefers-color-scheme: dark) {
   :root {
     --background: #0a0a0a;

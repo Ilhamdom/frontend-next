@@ -24,7 +24,7 @@ export default function AdminLayoutShell({ children }: { children: React.ReactNo
           style={{ marginLeft: sidebarWidth }}
         >
           <AdminTopbar onToggleSidebar={() => setIsSidebarOpen(prev => !prev)} />
-          <main className="flex-1 overflow-y-auto p-6 lg:p-8">
+          <main className="flex-1 overflow-y-auto p-6 lg:p-8 hide-scrollbar">
             {children}
           </main>
         </div>
