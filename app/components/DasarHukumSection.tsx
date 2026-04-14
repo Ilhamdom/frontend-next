@@ -11,7 +11,7 @@ export default function DasarHukumSection() {
   ];
 
   return (
-    <section className="py-12 bg-white">
+    <section id="dasar-hukum" className="py-12 bg-white">
       <div className="container mx-auto px-4">
         <h2 className="text-2xl font-bold text-center mb-6">Dasar Hukum Anggaran</h2>
         <div className="max-w-4xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 mt-8">

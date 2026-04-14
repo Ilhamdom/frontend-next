@@ -11,7 +11,7 @@ export default function AdminDashboardPage() {
   return (
     <div className="flex flex-col w-full">
         {/* Header Eksekutif */}
-        <div className="max-w-screen-xl mx-auto mb-10">
+        <div className="max-w-screen-xl mb-10 text-left px-8 md:px-16">
           <h1 className="text-3xl font-extrabold text-blue-900 tracking-tight">Dashboard Eksekutif</h1>
           <p className="text-gray-500 text-base mt-2">Ringkasan integrasi perencanaan dan capaian kinerja LAN RI Tahun 2026.</p>
         </div>

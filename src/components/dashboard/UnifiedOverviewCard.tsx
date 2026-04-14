@@ -3,26 +3,27 @@ import React, { useState } from "react";
 
 interface Props {
   role: "admin" | "user";
+  highlight?: boolean;
 }
 
-const tabs = [
-  { id: "ss", label: "Sasaran Strategis" },
-  { id: "sp", label: "Sasaran Program" },
-  { id: "sk", label: "Sasaran Kegiatan" },
-  { id: "cascading", label: "Hierarki Cascading" },
-];
-
-export default function UnifiedOverviewCard({ role }: Props) {
+function UnifiedOverviewCard({ role, highlight }: Props) {
   const [activeTab, setActiveTab] = useState("ss");
-
+  const tabs = [
+    { id: "ss", label: "Sasaran Strategis" },
+    { id: "sp", label: "Sasaran Program" },
+    { id: "sk", label: "Sasaran Kegiatan" },
+    { id: "cascading", label: "Hierarki Cascading" },
+  ];
   return (
-    <div className="bg-white rounded-2xl border border-gray-200 shadow-sm p-6 flex flex-col min-h-[400px]">
+    <div className={
+      `bg-white rounded-2xl border border-gray-200 shadow-sm p-6 flex flex-col min-h-[400px] transition-shadow duration-300 ` +
+      (highlight ? 'ring-4 ring-yellow-400 ring-opacity-70 shadow-lg' : '')
+    }>
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
         <div>
           <h3 className="text-xl font-extrabold text-[#0B1F3A] tracking-tight">Ringkasan Modul Sasaran</h3>
           <p className="text-xs font-semibold text-gray-500 mt-1">Akses cepat matriks indikator kinerja utama</p>
         </div>
-        
         {/* Tab Header */}
         <div className="flex overflow-x-auto hide-scrollbar bg-gray-50/50 p-1 rounded-xl border border-gray-200/60 max-w-full">
           {tabs.map(tab => (
@@ -40,7 +41,6 @@ export default function UnifiedOverviewCard({ role }: Props) {
           ))}
         </div>
       </div>
-
       {/* Tab Content */}
       <div className="flex-1 w-full bg-gray-50/30 border border-gray-100 rounded-xl overflow-hidden p-4">
         {activeTab === "ss" && (
@@ -61,7 +61,6 @@ export default function UnifiedOverviewCard({ role }: Props) {
             ))}
           </div>
         )}
-
         {activeTab === "sp" && (
           <div className="flex flex-col gap-3">
             {[1, 2, 3].map(i => (
@@ -80,7 +79,6 @@ export default function UnifiedOverviewCard({ role }: Props) {
             ))}
           </div>
         )}
-
         {activeTab === "sk" && (
           <div className="flex flex-col gap-3">
             {[1, 2, 3, 4].map(i => (
@@ -102,7 +100,6 @@ export default function UnifiedOverviewCard({ role }: Props) {
             ))}
           </div>
         )}
-
         {activeTab === "cascading" && (
           <div className="flex items-center justify-center h-full min-h-[200px] flex-col text-center">
              <div className="w-12 h-12 bg-blue-50 text-blue-600 rounded-full flex items-center justify-center mb-3">
@@ -119,3 +116,5 @@ export default function UnifiedOverviewCard({ role }: Props) {
     </div>
   );
 }
+
+export default UnifiedOverviewCard;

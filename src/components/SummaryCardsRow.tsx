@@ -4,6 +4,7 @@ import { IconTarget, IconListCheck, IconChartPie } from "@tabler/icons-react";
 
 interface SummaryCardsRowProps {
   role: "admin" | "user";
+  highlight?: boolean;
 }
 
 const summaryData = [
@@ -39,9 +40,12 @@ const summaryData = [
   },
 ];
 
-export default function SummaryCardsRow({ role }: SummaryCardsRowProps) {
+export default function SummaryCardsRow({ role, highlight }: SummaryCardsRowProps) {
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-10">
+    <div className={
+      `grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-10 transition-shadow duration-300 ` +
+      (highlight ? 'ring-4 ring-yellow-400 ring-opacity-70 shadow-lg' : '')
+    }>
       {/* 3 summary cards */}
       {summaryData.map((item, idx) => (
         <div key={item.label} className="bg-white rounded-xl border border-slate-200 shadow-sm p-5 md:p-6 flex flex-col min-h-[120px] relative hover:shadow-md transition-shadow group">

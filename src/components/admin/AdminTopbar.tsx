@@ -10,35 +10,19 @@ const AdminTopbar: React.FC<AdminTopbarProps> = ({ onToggleSidebar }) => {
   const { searchQuery, setSearchQuery } = useSearch();
   return (
     <header className="h-[72px] w-full bg-white border-b border-gray-200 flex items-center px-8 justify-between">
-      {/* Kiri: Hamburger + Search */}
-      <div className="flex items-center gap-4 flex-1 max-w-[420px]">
-        {/* Hamburger */}
+      {/* Kiri: Hamburger */}
+      <div className="flex items-center gap-4 flex-1 max-w-[60px]">
         <button
           className="mr-2 p-2 rounded-md hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-brand-blue-950"
           aria-label="Toggle sidebar"
           onClick={onToggleSidebar}
         >
-          {/* Hamburger icon */}
           <svg width="24" height="24" fill="none" viewBox="0 0 24 24" className="text-brand-blue-950">
             <rect y="5" width="24" height="2.5" rx="1.25" fill="currentColor" />
             <rect y="11" width="24" height="2.5" rx="1.25" fill="currentColor" />
             <rect y="17" width="24" height="2.5" rx="1.25" fill="currentColor" />
           </svg>
         </button>
-        <div className="w-full">
-          <Input
-            type="text"
-            placeholder="Cari di halaman aktif..."
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
-            icon={
-              <svg width="18" height="18" fill="none" viewBox="0 0 18 18">
-                <circle cx="8" cy="8" r="6.5" stroke="#94a3b8" strokeWidth="1.5" />
-                <path d="M15 15l-3.5-3.5" stroke="#94a3b8" strokeWidth="1.5" strokeLinecap="round" />
-              </svg>
-            }
-          />
-        </div>
       </div>
       {/* Tengah: Mode */}
       <div className="flex items-center gap-2 mx-8 hidden sm:flex">
@@ -49,10 +33,11 @@ const AdminTopbar: React.FC<AdminTopbarProps> = ({ onToggleSidebar }) => {
       </div>
       {/* Kanan: Notif & User & Logout */}
       <div className="flex items-center gap-4">
-        {/* Icon bell */}
-        <button className="relative p-2 rounded-full hover:bg-gray-100 text-brand-blue-950">
+        {/* Icon notifikasi baru: envelope */}
+        <button className="relative p-2 rounded-full hover:bg-gray-100 text-brand-blue-950" aria-label="Notifikasi">
           <svg width="20" height="20" fill="none" viewBox="0 0 20 20">
-            <path d="M10 17a2 2 0 0 0 2-2H8a2 2 0 0 0 2 2Zm6-3V9a6 6 0 1 0-12 0v5l-1 1v1h16v-1l-1-1Z" stroke="currentColor" strokeWidth="1.5" />
+            <rect x="2.5" y="5" width="15" height="10" rx="2" stroke="currentColor" strokeWidth="1.5" />
+            <path d="M4 6l6 5 6-5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
           </svg>
         </button>
         {/* User info */}

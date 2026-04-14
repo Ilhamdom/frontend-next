@@ -7,12 +7,15 @@ import AnggaranLineChart from "./anggaran/AnggaranLineChart";
 
 interface Props {
   role: "admin" | "user";
+  highlight?: boolean;
 }
 
-export default function DashboardKinerjaAnggaran({ role }: Props) {
+export default function DashboardKinerjaAnggaran({ role, highlight }: Props) {
   return (
-    <div className="flex flex-col gap-6 w-full mb-8 pt-8 border-t border-gray-200 mt-4">
-      
+    <div className={
+      `flex flex-col gap-6 w-full mb-8 pt-8 border-t border-gray-200 mt-4 transition-shadow duration-300 ` +
+      (highlight ? 'ring-4 ring-yellow-400 ring-opacity-70 shadow-lg' : '')
+    }>
       {/* Header Panel */}
       <div className="flex items-start justify-between flex-col md:flex-row gap-4 mb-2">
         <div className="flex flex-col">

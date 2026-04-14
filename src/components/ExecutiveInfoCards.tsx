@@ -4,14 +4,17 @@ import Link from "next/link";
 
 interface ExecutiveInfoCardsProps {
   role: "admin" | "user";
-}
-
+  highlight?: boolean;
+};
 const visionQuote =
   "Menjadi lembaga pembina yang unggul dalam mewujudkan birokrasi berkelas dunia untuk Indonesia Maju.";
 
-export default function ExecutiveInfoCards({ role }: ExecutiveInfoCardsProps) {
+export default function ExecutiveInfoCards({ role, highlight }: ExecutiveInfoCardsProps) {
   return (
-    <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
+    <div className={
+      `grid grid-cols-1 md:grid-cols-3 gap-6 mb-10 transition-shadow duration-300 ` +
+      (highlight ? 'ring-4 ring-yellow-400 ring-opacity-70 shadow-lg' : '')
+    }>
       {/* Card 1: VISI & TUJUAN */}
       <div className="bg-white rounded-xl border border-slate-200 shadow-sm p-5 md:p-6 flex flex-col min-h-[180px] hover:border-[#0A2540]/30 transition-colors">
         <div className="flex items-center justify-between mb-4">
