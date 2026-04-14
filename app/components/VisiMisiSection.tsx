@@ -40,7 +40,7 @@ export default function VisiMisiSection() {
           {/* VISI */}
           <div className="bg-white/90 rounded-2xl border border-blue-200 p-8 flex flex-col items-center shadow-lg">
             <div className="bg-blue-100 text-blue-700 rounded-full p-3 mb-3 shadow">
-              <svg width="28" height="28" fill="none" viewBox="0 0 24 24"><path d="M12 4v16m8-8H4" stroke="currentColor" strokeWidth="2"/></svg>
+              <svg width="28" height="28" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7S1 12 1 12z"/><circle cx="12" cy="12" r="3"/></svg>
             </div>
             <h3 className="text-lg font-bold text-blue-900 mb-2">VISI</h3>
             <p className="text-xl font-semibold text-blue-900 text-center">
@@ -50,14 +50,14 @@ export default function VisiMisiSection() {
           {/* MISI */}
           <div className="bg-white/90 rounded-2xl border border-blue-200 p-8 flex flex-col shadow-lg">
             <div className="bg-yellow-100 text-yellow-700 rounded-full p-3 mb-3 self-center shadow">
-              <svg width="28" height="28" fill="none" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="2"/></svg>
+              <svg width="28" height="28" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
             </div>
             <h3 className="text-lg font-bold text-blue-900 mb-2 text-center">MISI</h3>
             <ul className="space-y-4 mt-2">
               {data?.misi?.map((m) => (
                 <li key={m.id} className="flex items-start gap-2">
                   <span className="mt-1 text-yellow-500 shrink-0">
-                    <svg width="18" height="18" fill="none" viewBox="0 0 18 18"><circle cx="9" cy="9" r="7" stroke="currentColor" strokeWidth="2"/></svg>
+                    <svg width="18" height="18" fill="none" viewBox="0 0 18 18" stroke="currentColor" strokeWidth="2"><circle cx="9" cy="9" r="7"/><path d="M9 5v4l3 2"/></svg>
                   </span>
                   <span className="text-blue-900"><span className="font-semibold">{m.kode}.</span> {m.misiText}</span>
                 </li>
