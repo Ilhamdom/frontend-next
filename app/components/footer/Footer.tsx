@@ -6,12 +6,9 @@ export default function Footer() {
         {/* Brand */}
         <div>
           <div className="flex items-center gap-3 mb-3">
-            <div className="bg-white rounded p-1 w-10 h-10 flex items-center justify-center shadow-sm">
-              <img src="/images/logo-lan.png" alt="Logo LAN" className="w-full h-full object-contain" />
-            </div>
             <span className="text-2xl font-bold">SI-REVA 2026</span>
           </div>
-          <p className="text-gray-200 text-sm">
+          <p className="text-sm" style={{ color: '#ffffff' }}>
             Dibuat oleh Biro Perencanaan dan Keuangan LAN RI bekerja sama dengan Tim Pengembang Internal.
           </p>
         </div>
@@ -28,24 +25,9 @@ export default function Footer() {
         <div>
           <div className="font-bold mb-2">KONTAK BANTUAN</div>
           <ul className="space-y-2 text-sm">
-            <li className="flex items-center gap-2">
-              <svg width="16" height="16" fill="none" viewBox="0 0 16 16">
-                <rect x="2" y="2" width="12" height="12" rx="2" fill="#F3F4F6" />
-              </svg>
-              Jl. Veteran No. 10, Jakarta Pusat
-            </li>
-            <li className="flex items-center gap-2">
-              <svg width="16" height="16" fill="none" viewBox="0 0 16 16">
-                <circle cx="8" cy="8" r="6" stroke="#FDE68A" strokeWidth="2" />
-              </svg>
-              (021) 3868201
-            </li>
-            <li className="flex items-center gap-2">
-              <svg width="16" height="16" fill="none" viewBox="0 0 16 16">
-                <path d="M2 4l6 5 6-5" stroke="#FDE68A" strokeWidth="2" />
-              </svg>
-              support.sireva@lan.go.id
-            </li>
+            <li>Jl. Veteran No. 10, Jakarta Pusat</li>
+            <li>(021) 3868201</li>
+            <li>support.sireva@lan.go.id</li>
           </ul>
         </div>
       </div>
