@@ -5,15 +5,17 @@ import AdminTopbar from "./AdminTopbar";
 import { SearchProvider } from "../../context/SearchContext";
 
 export default function AdminLayoutShell({ children }: { children: React.ReactNode }) {
-  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const [isSidebarOpen, setIsSidebarOpen] = useState(true); // true = expanded, false = collapsed
+  // Lebar sidebar: expanded 248px (w-64), collapsed 80px (w-20)
+  const sidebarWidth = isSidebarOpen ? 248 : 80;
   return (
     <SearchProvider>
-      <div className="h-screen bg-[#eef2f6] overflow-hidden">
-        <div className="flex h-full">
+      <div className="min-h-screen bg-[#eef2f6]">
+        <div className="flex min-h-screen">
           <AdminSidebar isOpen={isSidebarOpen} />
-          <div className="flex flex-1 flex-col min-w-0 h-full overflow-hidden relative">
+          <div className="flex min-w-0 flex-1 flex-col">
             <AdminTopbar onToggleSidebar={() => setIsSidebarOpen(prev => !prev)} />
-            <main className="flex-1 overflow-y-auto p-6 lg:p-8 w-full relative">
+            <main className="min-w-0 flex-1 p-6 lg:p-8">
               {children}
             </main>
           </div>

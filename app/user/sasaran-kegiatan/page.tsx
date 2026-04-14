@@ -1,9 +1,9 @@
 "use client";
 import Link from "next/link";
-import PageHeader from "@/components/PageHeader";
-import TableCard from "@/components/TableCard";
-import ProgressBar from "@/components/ProgressBar";
-import StatusBadge from "@/components/StatusBadge";
+import UserPageHeader from "../../components/user/UserPageHeader";
+import UserTableCard from "../../components/user/UserTableCard";
+import UserProgressBar from "../../components/user/UserProgressBar";
+import UserStatusBadge from "../../components/user/UserStatusBadge";
 
 export default function UserSasaranKegiatanPage() {
   return (

@@ -1,8 +1,8 @@
 import React from "react";
 import Link from "next/link";
-import PageHeader from "@/components/PageHeader";
-import TableCard from "@/components/TableCard";
-import StatusBadge from "@/components/StatusBadge";
+import UserPageHeader from "../../components/user/UserPageHeader";
+import UserTableCard from "../../components/user/UserTableCard";
+import UserStatusBadge from "../../components/user/UserStatusBadge";
 
 const dummyData = [
   { 
