@@ -1,6 +1,6 @@
 "use client";
-import PageHeader from "../../components/PageHeader";
-import AdminTableCard from "../../../src/components/admin/AdminTableCard";
+import PageHeader from "@/components/PageHeader";
+import TableCard from "@/components/TableCard";
 import AdminStatusBadge from "../../../src/components/admin/AdminStatusBadge";
 import SasaranStrategisFormModal from "../../../src/components/admin/SasaranStrategisFormModal";
 import React, { useState } from "react";

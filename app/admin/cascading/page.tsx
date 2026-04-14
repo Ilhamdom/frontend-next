@@ -2,6 +2,9 @@
 import PageHeader from "../../components/PageHeader";
 import Modal from "../../components/ui/Modal";
 import React, { useState } from "react";
+import { Accordion, AccordionItem } from "@/components/ui/Accordion";
+import { Alert } from "@/components/ui/Alert";
+import { Avatar } from "@/components/ui/Avatar";
 
 export default function AdminCascadingPage() {
   const [modalOpen, setModalOpen] = useState(false);
@@ -9,6 +12,54 @@ export default function AdminCascadingPage() {
 
   return (
     <div className="flex flex-col w-full">
+      <Alert 
+        type="warning" 
+        title="Pemeliharaan Sistem" 
+        actionText="Lihat detail jadwal"
+        onAction={() => {}}
+        onClose={() => {}}
+        className="mb-6"
+      >
+        Kami informasikan bahwa akan dilakukan pemeliharaan sistem pada Selasa, 21 Mei 2024, pukul 01.00 - 03.00 WIB.
+      </Alert>
+
+      {/* Demonstrasi Avatar */}
+      <div className="flex items-center gap-6 mb-6 p-4 bg-white rounded-xl border border-gray-200">
+        <div>
+          <span className="block text-xs font-semibold text-gray-500 mb-2">Image Avatar</span>
+          <div className="flex items-center gap-3">
+            <Avatar src="https://i.pravatar.cc/150?img=47" name="Susi Indriwati" />
+            <div>
+              <div className="text-sm font-bold text-gray-900">Susi Indriwati</div>
+              <div className="text-xs text-gray-500">Product Designer</div>
+            </div>
+          </div>
+        </div>
+        
+        <div className="w-px h-10 bg-gray-200 mx-2"></div>
+        
+        <div>
+          <span className="block text-xs font-semibold text-gray-500 mb-2">Initials Avatar</span>
+          <div className="flex items-center gap-3">
+            <Avatar name="Susi Indriwati" />
+            <div>
+              <div className="text-sm font-bold text-gray-900">Susi Indriwati</div>
+              <div className="text-xs text-gray-500">Tanpa Foto</div>
+            </div>
+          </div>
+        </div>
+
+        <div className="w-px h-10 bg-gray-200 mx-2"></div>
+
+        <div>
+           <span className="block text-xs font-semibold text-gray-500 mb-2">Placeholder</span>
+           <div className="flex items-center gap-3">
+             <Avatar />
+             <div className="text-sm text-gray-500 italic">User Default</div>
+           </div>
+        </div>
+      </div>
+      
       <PageHeader
         title="Cascading Kinerja"
         description="Peta penurunan (alignment) sasaran dari tingkat organisasi hingga individu."
@@ -57,8 +108,24 @@ export default function AdminCascadingPage() {
         </div>
       </div>
       <Modal open={modalOpen} onClose={() => setModalOpen(false)} title="Setup Cascading">
-        {/* TODO: Add setup cascading form or content here */}
-        <div>Setup cascading content goes here.</div>
+        <div className="p-4">
+          <div className="mb-4">
+            <h3 className="text-lg font-bold text-gray-900 mb-2">Panduan Penggunaan</h3>
+            <p className="text-sm text-gray-600">Pelajari cara mengatur cascading kinerja dengan panduan berikut ini.</p>
+          </div>
+          
+          <Accordion>
+            <AccordionItem title="Apa itu Cascading Kinerja?">
+              Cascading Kinerja adalah proses penyelarasan dan penurunan target sasaran strategis dari tingkat pimpinan tertinggi hingga ke level individu pelaksana. Hal ini memastikan setiap pegawai memahami kontribusinya terhadap tujuan organisasi.
+            </AccordionItem>
+            <AccordionItem title="Bagaimana cara memulai setup cascading?">
+              Untuk memulai, pastikan JPT Utama telah menetapkan Sasaran Strategis beserta Indikator Kinerja Utama (IKU). Setelah itu, JPT Pratama dapat melakukan alignment dengan menyusun Sasaran Program pendukung yang berkesinambungan.
+            </AccordionItem>
+            <AccordionItem title="Apa tujuan utama dari proses ini?">
+              Tujuan utamanya adalah untuk memastikan setiap unit kerja dan individu berkontribusi secara langsung terhadap pencapaian target organisasi secara efektif dan efisien, serta transparan dalam evaluasinya.
+            </AccordionItem>
+          </Accordion>
+        </div>
       </Modal>
     </div>
   );

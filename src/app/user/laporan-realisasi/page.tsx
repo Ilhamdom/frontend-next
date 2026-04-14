@@ -1,8 +1,8 @@
 "use client";
-import UserLayoutShell from "../../../components/user/UserLayoutShell";
-import UserPageHeader from "../../../components/user/UserPageHeader";
-import UserTableCard from "../../../components/user/UserTableCard";
-import UserStatusBadge from "../../../components/user/UserStatusBadge";
+import LayoutShell from "@/components/LayoutShell";
+import PageHeader from "@/components/PageHeader";
+import TableCard from "@/components/TableCard";
+import StatusBadge from "@/components/StatusBadge";
 
 const data = [
   {
@@ -33,12 +33,12 @@ const data = [
 
 export default function UserLaporanRealisasiPage() {
   return (
-    <UserLayoutShell>
-      <UserPageHeader
+    <LayoutShell>
+      <PageHeader
         title="Laporan Realisasi"
         description="Laporan ringkasan realisasi kegiatan dan anggaran pada unit kerja."
       />
-      <UserTableCard
+      <TableCard
         title="Data Realisasi Kegiatan"
         toolbar={
           <div className="flex gap-2">
@@ -70,12 +70,12 @@ export default function UserLaporanRealisasiPage() {
                 <td>{row.anggaran}</td>
                 <td>{row.realisasi}</td>
                 <td>{row.persentase}</td>
-                <td><UserStatusBadge status={row.status} /></td>
+                <td><StatusBadge status={row.status} /></td>
               </tr>
             ))}
           </tbody>
         </table>
-      </UserTableCard>
-    </UserLayoutShell>
+      </TableCard>
+    </LayoutShell>
   );
 }

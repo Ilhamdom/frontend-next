@@ -3,7 +3,7 @@ import React from "react";
 interface InfoCardProps {
 	title: string;
 	children: React.ReactNode;
-	accent?: "blue" | "green" | "orange";
+	accent?: "blue" | "green" | "orange" | "red";
 	actionLabel?: string;
 }
 
@@ -11,6 +11,7 @@ const accentStyles = {
 	blue: "text-blue-800 border-blue-100",
 	green: "text-emerald-700 border-emerald-100",
 	orange: "text-orange-700 border-orange-100",
+	red: "text-red-700 border-red-100",
 };
 
 export default function InfoCard({ title, children, accent = "blue", actionLabel }: InfoCardProps) {

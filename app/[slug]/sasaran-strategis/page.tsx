@@ -1,3 +1,4 @@
+import { Button } from '@/components/ui/Button';
 "use client";
 import LayoutShell from "@/components/LayoutShell";
 import PageHeader from "@/components/PageHeader";
@@ -173,12 +174,12 @@ export default function SasaranStrategisPage() {
             className: 'whitespace-normal break-words text-center',
             render: (row) => (
               <div className="flex gap-2 justify-center">
-                <button title="Edit" aria-label={`Edit ${row.sasaran_strategis}`} className="table-action-icon-btn">
+                <Button variant="secondary" size="32" iconOnly title="Edit" aria-label={`Edit ${row.sasaran_strategis}`} >
                   <IconPencil size={20} />
-                </button>
-                <button title="Lihat" aria-label={`Lihat ${row.sasaran_strategis}`} className="table-action-icon-btn table-action-icon-btn--neutral">
+                </Button>
+                <Button variant="secondary" size="32" iconOnly title="Lihat" aria-label={`Lihat ${row.sasaran_strategis}`} >
                   <IconEye size={20} />
-                </button>
+                </Button>
               </div>
             ),
             width: 140,

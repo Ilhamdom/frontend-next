@@ -1,3 +1,4 @@
+import { Button } from '@/components/ui/Button';
 "use client";
 import LayoutShell from "@/components/LayoutShell";
 import PageHeader from "@/components/PageHeader";
@@ -92,19 +93,19 @@ export default function RencanaAksiPage() {
                 <td className="text-center py-3 px-3 text-gray-700">{row.tw4}</td>
                 <td className="py-3 px-3">
                   <div className="flex items-center justify-center gap-1">
-                    <button className="table-action-icon-btn" title="Detail">
+                    <Button variant="secondary" size="32" iconOnly  title="Detail">
                       <IconEye size={16} />
-                    </button>
-                    <button className="table-action-icon-btn" title="Edit">
+                    </Button>
+                    <Button variant="secondary" size="32" iconOnly  title="Edit">
                       <IconPencil size={16} />
-                    </button>
-                    <button
-                      className="table-action-icon-btn"
+                    </Button>
+                    <Button variant="secondary" size="32" iconOnly
+                      
                       style={{ background: "#fef2f2", borderColor: "#fecaca", color: "#dc2626" }}
                       title="Hapus"
                     >
                       <IconTrash size={16} />
-                    </button>
+                    </Button>
                   </div>
                 </td>
               </tr>

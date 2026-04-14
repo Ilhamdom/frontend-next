@@ -1,8 +1,8 @@
 import React from "react";
 import Link from "next/link";
-import UserPageHeader from "../../components/user/UserPageHeader";
-import UserTableCard from "../../components/user/UserTableCard";
-import UserStatusBadge from "../../components/user/UserStatusBadge";
+import PageHeader from "@/components/PageHeader";
+import TableCard from "@/components/TableCard";
+import StatusBadge from "@/components/StatusBadge";
 
 const dummyData = [
   { 
@@ -37,7 +37,7 @@ const dummyData = [
 export default function LaporanRealisasiUserPage() {
   return (
     <div className="flex flex-col w-full pb-10">
-      <UserPageHeader
+      <PageHeader
         title="Laporan Realisasi Kinerja"
         description="Pusat pelaporan progres capaian barang, jasa, dan keuangan secara berkala."
         action={
@@ -64,7 +64,7 @@ export default function LaporanRealisasiUserPage() {
         </div>
       </div>
 
-      <UserTableCard
+      <TableCard
         title="Riwayat Pelaporan Realisasi"
         toolbar={
           <div className="flex gap-2">
@@ -103,7 +103,7 @@ export default function LaporanRealisasiUserPage() {
                   <td className="py-4 px-4 align-top text-gray-700 font-medium">{row.capaian}</td>
                   <td className="py-4 px-4 align-top text-gray-600 text-xs font-semibold">{row.tanggal}</td>
                   <td className="py-4 px-4 align-top text-center">
-                    <UserStatusBadge status={row.status} />
+                    <StatusBadge status={row.status} />
                   </td>
                   <td className="py-4 px-4 align-top text-center">
                     {row.dokumen !== "-" ? (
@@ -125,7 +125,7 @@ export default function LaporanRealisasiUserPage() {
             </tbody>
           </table>
         </div>
-      </UserTableCard>
+      </TableCard>
     </div>
   );
 }

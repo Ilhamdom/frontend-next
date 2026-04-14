@@ -1,11 +1,11 @@
 "use client";
-import UserPageHeader from "../../components/user/UserPageHeader";
-import UserInfoCard from "../../components/user/UserInfoCard";
+import PageHeader from "@/components/PageHeader";
+import InfoCard from "@/components/InfoCard";
 
 export default function UserVisiMisiTujuanPage() {
   return (
     <div className="flex flex-col w-full">
-      <UserPageHeader
+      <PageHeader
         title="Visi, Misi & Tujuan"
         description="Fondasi arah kebijakan dan landasan perencanaan strategis LAN RI."
       />
@@ -21,15 +21,15 @@ export default function UserVisiMisiTujuanPage() {
       {/* Grid 2 kolom */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {/* Misi Organisasi */}
-        <UserInfoCard title="Misi Organisasi" accent="blue">
+        <InfoCard title="Misi Organisasi" accent="blue">
           <ol className="list-decimal list-inside space-y-2">
             <li className="bg-gray-50 rounded-lg px-3 py-2">Meningkatkan kualitas SDM aparatur negara.</li>
             <li className="bg-gray-50 rounded-lg px-3 py-2">Mengembangkan inovasi tata kelola pemerintahan.</li>
             <li className="bg-gray-50 rounded-lg px-3 py-2">Memperkuat sistem pengawasan dan akuntabilitas.</li>
           </ol>
-        </UserInfoCard>
+        </InfoCard>
         {/* Tujuan Strategis */}
-        <UserInfoCard title="Tujuan Strategis" accent="orange">
+        <InfoCard title="Tujuan Strategis" accent="orange">
           <table className="w-full text-sm">
             <thead>
               <tr className="text-gray-500 uppercase text-xs">
@@ -44,7 +44,7 @@ export default function UserVisiMisiTujuanPage() {
               <tr><td className="font-semibold pr-4">T-04</td><td>Meningkatkan akuntabilitas kinerja</td></tr>
             </tbody>
           </table>
-        </UserInfoCard>
+        </InfoCard>
       </div>
     </div>
   );

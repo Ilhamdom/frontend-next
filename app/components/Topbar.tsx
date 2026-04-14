@@ -3,6 +3,7 @@ import React, { useState, useRef, useEffect } from "react";
 import { useUserStore } from "@/store/userStore";
 import Link from "next/link";
 import { IconChevronDown, IconLogout, IconCalendar, IconCalendarStats } from "@tabler/icons-react";
+import { Avatar } from "@/components/ui/Avatar";
 
 interface TopbarProps {
   onToggleSidebar: () => void;
@@ -143,13 +144,14 @@ const Topbar: React.FC<TopbarProps> = ({ onToggleSidebar }) => {
         <div className="relative" ref={dropdownRef}>
           <button 
             onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-            className="flex items-center gap-3 hover:bg-blue-800/50 p-1.5 pr-2 rounded-xl transition-all outline-none"
+            className="flex items-center gap-3 hover:bg-blue-800/50 p-1 pr-2 rounded-full transition-all outline-none"
           >
+            <Avatar name={user?.username || ''} size="sm" />
             <div className="text-right hidden sm:block">
               <div className="text-sm font-bold text-white leading-tight">{user?.username || "-"}</div>
               <div className="text-xs text-blue-200 font-medium">{user?.unit || "-"}</div>
             </div>
-            <IconChevronDown size={16} stroke={2} className={`text-blue-200 transition-transform duration-200 ${isDropdownOpen ? 'rotate-180' : ''}`} />
+            <IconChevronDown size={14} stroke={2} className={`text-blue-200 transition-transform duration-200 ${isDropdownOpen ? 'rotate-180' : ''}`} />
           </button>
 
           {/* Dropdown Menu */}
@@ -157,9 +159,7 @@ const Topbar: React.FC<TopbarProps> = ({ onToggleSidebar }) => {
             <div className="absolute right-0 mt-3 w-64 bg-white rounded-2xl shadow-[0_8px_30px_rgb(0,0,0,0.12)] border border-gray-100 py-1 z-50 animate-in fade-in slide-in-from-top-2 duration-200 overflow-hidden">
               {/* User Info Header */}
               <div className="px-4 py-4 bg-linear-to-br from-blue-900 to-blue-700 flex items-center gap-3">
-                <div className="w-11 h-11 rounded-xl bg-emerald-500 flex items-center justify-center text-white font-extrabold text-base shadow border border-emerald-400/40 shrink-0">
-                  {user?.username ? user.username.slice(0, 2).toUpperCase() : "--"}
-                </div>
+                <Avatar name={user?.username || ''} size="md" />
                 <div className="min-w-0">
                   <div className="text-sm font-bold text-white leading-tight truncate">{user?.username || "-"}</div>
                   <div className="text-xs text-blue-200 font-medium truncate">{user?.unit || "-"}</div>

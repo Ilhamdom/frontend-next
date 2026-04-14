@@ -1,7 +1,7 @@
 "use client";
-import UserPageHeader from "../../components/user/UserPageHeader";
-import UserTableCard from "../../components/user/UserTableCard";
-import UserStatusBadge from "../../components/user/UserStatusBadge";
+import PageHeader from "@/components/PageHeader";
+import TableCard from "@/components/TableCard";
+import StatusBadge from "@/components/StatusBadge";
 
 const data = [
   {
@@ -41,11 +41,11 @@ const data = [
 export default function UserSasaranStrategisPage() {
   return (
     <div className="flex flex-col w-full">
-      <UserPageHeader
+      <PageHeader
         title="Sasaran Strategis (SS)"
         description="Peta jalan strategis dan indikator kinerja makro (Level JPT Utama)."
       />
-      <UserTableCard
+      <TableCard
         title="Daftar Sasaran Strategis"
       >
         <table className="w-full text-sm">
@@ -67,12 +67,12 @@ export default function UserSasaranStrategisPage() {
                 <td className="pr-4 py-2">{row.iku}</td>
                 <td className="pr-4 py-2">{row.target}</td>
                 <td className="pr-4 py-2">{row.capaian}</td>
-                <td className="py-2"><UserStatusBadge status={row.status} /></td>
+                <td className="py-2"><StatusBadge status={row.status} /></td>
               </tr>
             ))}
           </tbody>
         </table>
-      </UserTableCard>
+      </TableCard>
     </div>
   );
 }

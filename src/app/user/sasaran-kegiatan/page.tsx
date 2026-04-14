@@ -1,21 +1,21 @@
 "use client";
-import UserLayout from "../../components/UserLayout";
-import UserPageHeader from "../../components/user/UserPageHeader";
-import UserTableCard from "../../components/user/UserTableCard";
-import UserProgressBar from "../../components/user/UserProgressBar";
-import UserStatusBadge from "../../components/user/UserStatusBadge";
+import LayoutShell from "@/components/LayoutShell";
+import PageHeader from "@/components/PageHeader";
+import TableCard from "@/components/TableCard";
+import ProgressBar from "@/components/ProgressBar";
+import StatusBadge from "@/components/StatusBadge";
 
 export default function UserSasaranKegiatanPage() {
   return (
-    <UserLayout>
-      <UserPageHeader
+    <LayoutShell>
+      <PageHeader
         title="Sasaran Kegiatan (SK)"
         description="Daftar rinci kegiatan operasional (Level Administrator/Pengawas)."
         action={
           <button className="bg-emerald-600 text-white px-4 py-2 rounded-lg font-semibold text-sm hover:bg-emerald-700">Lapor Realisasi</button>
         }
       />
-      <UserTableCard
+      <TableCard
         title="Daftar Sasaran Kegiatan"
         toolbar={
           <div className="flex gap-2">
@@ -44,17 +44,17 @@ export default function UserSasaranKegiatanPage() {
               <td className="min-w-[120px]">
                 <div className="flex flex-col gap-1">
                   <span className="text-xs font-semibold text-gray-700">100%</span>
-                  <UserProgressBar value={100} color="green" />
+                  <ProgressBar value={100} color="green" />
                 </div>
               </td>
-              <td><UserStatusBadge status="SELESAI" /></td>
+              <td><StatusBadge status="SELESAI" /></td>
               <td>
                 <button className="px-3 py-1 rounded-lg border border-emerald-600 text-emerald-700 text-xs font-semibold hover:bg-emerald-50">Update</button>
               </td>
             </tr>
           </tbody>
         </table>
-      </UserTableCard>
-    </UserLayout>
+      </TableCard>
+    </LayoutShell>
   );
 }

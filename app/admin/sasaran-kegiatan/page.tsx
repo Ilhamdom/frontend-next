@@ -1,6 +1,6 @@
 "use client";
 
-import AdminPageHeader from "../../../src/components/admin/AdminPageHeader";
+import PageHeader from "@/components/PageHeader";
 import AdminStatusBadge from "../../../src/components/admin/AdminStatusBadge";
 import AdminProgressBar from "../../../src/components/admin/AdminProgressBar";
 import SasaranKegiatanFormModal from "../../../src/components/admin/SasaranKegiatanFormModal";

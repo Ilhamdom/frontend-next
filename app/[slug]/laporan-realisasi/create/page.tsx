@@ -1,7 +1,7 @@
 "use client";
 import React, { useState } from "react";
 import { useRouter } from "next/navigation";
-import UserPageHeader from "../../../components/user/UserPageHeader";
+import PageHeader from "@/components/PageHeader";
 import { Input } from "../../../../src/components/ui/Input";
 import { Select } from "../../../../src/components/ui/Select";
 import { Textarea } from "../../../../src/components/ui/Textarea";
@@ -24,7 +24,7 @@ export default function CreateLaporanRealisasiPage() {
 
   return (
     <div className="flex flex-col w-full max-w-screen-md mx-auto pb-10">
-      <UserPageHeader
+      <PageHeader
         title="Buat Laporan Baru"
         description="Isi formulir berikut untuk melaporkan capaian pelaksanaan kegiatan Anda."
       />

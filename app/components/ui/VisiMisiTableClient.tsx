@@ -1,3 +1,4 @@
+import { Button } from '@/components/ui/Button';
 "use client";
 import { useState } from "react";
 import Modal from "@/components/ui/Modal";
@@ -39,22 +40,22 @@ export default function VisiMisiTableClient({ rows, errorMessage }: Props) {
               <td className="px-3 py-2">{row.tujuan}</td>
               <td className="text-center px-3 py-2">
                 <div className="flex items-center justify-center gap-2">
-                  <button
+                  <Button variant="secondary" size="32" iconOnly
                     title="Edit"
                     aria-label={`Edit baris ${idx + 1}`}
-                    className="table-action-icon-btn"
+                    
                     onClick={() => setModal({ type: 'edit', row })}
                   >
                     <IconPencil size={18} />
-                  </button>
-                  <button
+                  </Button>
+                  <Button variant="secondary" size="32" iconOnly
                     title="Lihat"
                     aria-label={`Lihat baris ${idx + 1}`}
-                    className="table-action-icon-btn table-action-icon-btn--neutral"
+                    
                     onClick={() => setModal({ type: 'view', row })}
                   >
                     <IconEye size={18} />
-                  </button>
+                  </Button>
                 </div>
               </td>
             </tr>

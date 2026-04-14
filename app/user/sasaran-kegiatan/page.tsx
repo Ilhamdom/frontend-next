@@ -1,21 +1,21 @@
 "use client";
 import Link from "next/link";
-import UserPageHeader from "../../components/user/UserPageHeader";
-import UserTableCard from "../../components/user/UserTableCard";
-import UserProgressBar from "../../components/user/UserProgressBar";
-import UserStatusBadge from "../../components/user/UserStatusBadge";
+import PageHeader from "@/components/PageHeader";
+import TableCard from "@/components/TableCard";
+import ProgressBar from "@/components/ProgressBar";
+import StatusBadge from "@/components/StatusBadge";
 
 export default function UserSasaranKegiatanPage() {
   return (
     <div className="flex flex-col w-full">
-      <UserPageHeader
+      <PageHeader
         title="Sasaran Kegiatan (SK)"
         description="Daftar rinci kegiatan operasional (Level Administrator/Pengawas)."
         action={
           <Link href="/user/laporan-realisasi" className="bg-emerald-600 text-white px-4 py-2 rounded-lg font-semibold text-sm hover:bg-emerald-700 inline-flex items-center justify-center">Lapor Realisasi</Link>
         }
       />
-      <UserTableCard
+      <TableCard
         title="Daftar Sasaran Kegiatan"
         toolbar={
           <div className="flex gap-2">
@@ -44,17 +44,17 @@ export default function UserSasaranKegiatanPage() {
               <td className="min-w-[120px]">
                 <div className="flex flex-col gap-1">
                   <span className="text-xs font-semibold text-gray-700">100%</span>
-                  <UserProgressBar value={100} color="green" />
+                  <ProgressBar value={100} color="green" />
                 </div>
               </td>
-              <td><UserStatusBadge status="SELESAI" /></td>
+              <td><StatusBadge status="SELESAI" /></td>
               <td>
                 <button className="bg-blue-100 text-blue-700 px-3 py-1 rounded-lg text-xs font-semibold hover:bg-blue-200">Detail</button>
               </td>
             </tr>
           </tbody>
         </table>
-      </UserTableCard>
+      </TableCard>
     </div>
   );
 }

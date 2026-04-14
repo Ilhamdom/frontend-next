@@ -75,30 +75,11 @@ export default function DashboardKinerjaAnggaran({ role }: Props) {
         {/* Kolom Kanan: Detail & Trend Chart */}
         <div className="flex flex-col gap-6 lg:col-span-2">
           
-          {/* Baris Atas Kanan: Capaian Distribusi RO */}
-          <div className="bg-white rounded-2xl border border-gray-200 p-6 flex flex-col shadow-sm">
-            <div className="flex items-center justify-between mb-6">
-              <div>
-                <h4 className="text-lg font-extrabold text-[#0B1F3A]">Capaian Distribusi RO</h4>
-                <p className="text-xs font-semibold text-gray-500 mt-0.5">Sebaran target anggaran Per-Kegiatan</p>
-              </div>
-              <span className="bg-green-100 text-green-700 px-3 py-1 rounded text-[10px] font-bold">100% On-Track</span>
-            </div>
-            <div className="w-full min-h-[200px] bg-gray-50/50 rounded-xl border border-gray-100 p-2">
-              <AnggaranBarChart />
-            </div>
-          </div>
+          {/* Baris Atas Kanan: Capaian Distribusi RO (ChartCard Wrapper handles border and padding) */}
+          <AnggaranBarChart />
 
-          {/* Baris Bawah Kanan: Tren YoY */}
-          <div className="bg-white rounded-2xl border border-gray-200 p-6 flex flex-col shadow-sm">
-             <div className="flex flex-col mb-4">
-               <h4 className="text-lg font-extrabold text-[#0B1F3A]">Tren Realisasi YoY</h4>
-               <p className="text-xs font-semibold text-gray-500 mt-0.5">Pola grafik pengeluaran anggaran bulanan (Jan - Des)</p>
-             </div>
-             <div className="w-full flex-1 min-h-[200px] -ml-2 mt-4">
-               <AnggaranLineChart />
-             </div>
-          </div>
+          {/* Baris Bawah Kanan: Tren YoY (ChartCard Wrapper handles border and padding) */}
+          <AnggaranLineChart />
 
         </div>
       </div>

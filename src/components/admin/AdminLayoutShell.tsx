@@ -8,12 +8,12 @@ export default function AdminLayoutShell({ children }: { children: React.ReactNo
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   return (
     <SearchProvider>
-      <div className="min-h-screen bg-[#eef2f6]">
-        <div className="flex min-h-screen">
+      <div className="h-screen bg-[#eef2f6] overflow-hidden">
+        <div className="flex h-full">
           <AdminSidebar isOpen={isSidebarOpen} />
-          <div className="flex min-w-0 flex-1 flex-col">
+          <div className="flex flex-1 flex-col min-w-0 h-full overflow-hidden relative">
             <AdminTopbar onToggleSidebar={() => setIsSidebarOpen(prev => !prev)} />
-            <main className="min-w-0 flex-1 p-6 lg:p-8">
+            <main className="flex-1 overflow-y-auto p-6 lg:p-8 w-full relative">
               {children}
             </main>
           </div>

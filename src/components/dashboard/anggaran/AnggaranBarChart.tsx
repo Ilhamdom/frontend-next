@@ -1,16 +1,6 @@
 "use client";
-
 import React from "react";
-import {
-  BarChart,
-  Bar,
-  XAxis,
-  YAxis,
-  CartesianGrid,
-  ResponsiveContainer,
-  LabelList,
-  Cell,
-} from "recharts";
+import { ChartCard, StandardBarChart } from "../ui/Chart";
 
 const data = [
   { name: "Pemeliharaan Sarana Bidang T...", percentage: 100 },
@@ -27,44 +17,18 @@ const data = [
 
 export default function AnggaranBarChart() {
   return (
-    <div className="w-full h-[280px]">
-      <ResponsiveContainer width="100%" height="100%">
-        <BarChart
-          data={data}
-          layout="vertical"
-          margin={{ top: 5, right: 30, left: 10, bottom: 5 }}
-        >
-          <CartesianGrid strokeDasharray="3 3" horizontal={false} stroke="#e5e7eb" />
-          <XAxis 
-            type="number" 
-            domain={[0, 100]} 
-            tickFormatter={(val) => `${val}%`} 
-            tick={{ fontSize: 10, fill: "#6b7280" }} 
-            stroke="#d1d5db" 
-          />
-          <YAxis 
-            type="category" 
-            dataKey="name" 
-            width={160} 
-            tick={{ fontSize: 9, fill: "#4b5563" }} 
-            stroke="none" 
-            axisLine={false} 
-            tickLine={false}
-          />
-          <Bar dataKey="percentage" barSize={12}>
-            {data.map((entry, index) => (
-              <Cell key={`cell-${index}`} fill="#f97316" /> /* Tailwind orange-500 */
-            ))}
-            <LabelList 
-              dataKey="percentage" 
-              position="right" 
-              formatter={(val: any) => val !== undefined ? `${val}%` : ''} 
-              style={{ fontSize: 10, fill: "#4b5563" }} 
-              offset={5}
-            />
-          </Bar>
-        </BarChart>
-      </ResponsiveContainer>
-    </div>
+    <ChartCard 
+      title="Capaian Distribusi RO" 
+      subtitle="Sebaran target anggaran Per-Kegiatan"
+      action={<span className="bg-green-100 text-green-700 px-3 py-1 rounded text-[10px] font-bold">100% On-Track</span>}
+    >
+      <StandardBarChart 
+        data={data}
+        indexKey="name"
+        categories={["percentage"]}
+        layout="vertical"
+        colors={["#f97316"]} // Based on their old color or brand color
+      />
+    </ChartCard>
   );
 }
