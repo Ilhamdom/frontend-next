@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import { ChartCard, StandardBarChart } from "../ui/Chart";
+import { ChartCard, StandardBarChart } from "../../ui/Chart";
 
 const data = [
   { name: "Pemeliharaan Sarana Bidang T...", percentage: 100 },

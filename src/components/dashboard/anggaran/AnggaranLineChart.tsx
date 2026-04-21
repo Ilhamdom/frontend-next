@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import { ChartCard, StandardLineChart } from "../ui/Chart";
+import { ChartCard, StandardLineChart } from "../../ui/Chart";
 
 const data = [
   { name: "Januari", RO1: 0.05, RO2: 0, RO3: 0, RO4: 0, RO5: 0 },
